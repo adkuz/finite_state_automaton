@@ -1,66 +1,80 @@
 #include <iostream>
+#include <iterator>
+#include <vector>
 
 
 
-class finite_state_machine
-{
-	using size_t = std::size_t;
+namespace machines {
 
-	class characteristic_vector
+	class finite_state_machine
 	{
-		using vector_t = std::vector<bool>;
-	public:
-		characteristic_vector(std::initializer_list<size_t>& index_list)
-		{
+		using size_t = std::size_t;
 
-		}
-
-		bool set(size_t index)
+		class characteristic_vector
 		{
-			if( ! _is_valid(index) ) {
-				return false;
+			using vector_t = std::vector<bool>;
+
+		public:
+			characteristic_vector(size_t length, std::initializer_list<size_t>& indexes) :
+				vector( length )
+			{
+				for( size_t i = 0; i < length; ++i ) 
+					(*this)[i] = false;
+
+				for( auto it = std::begin(indexes); it != std::end(indexes); ++it )
+					this->set( *it );
+				
 			}
 
-			(*this)[index] = true;
-			return true;
-		}
+			bool set(size_t index)
+			{
+				if( ! _is_valid(index) ) {
+					return false;
+				}
 
-		bool reset(size_t index)
-		{
-			if( ! _is_valid(index) ) {
-				return false;
-			}
-			
-			(*this)[index] = false;
-			return true;			
-		}
-
-		bool get(size_t index) const
-		{
-			if( ! _is_valid(index) ) {
-				return false;
+				(*this)[index] = true;
+				return true;
 			}
 
-			return (*this)[index];
-		}
+			bool reset(size_t index)
+			{
+				if( ! _is_valid(index) ) {
+					return false;
+				}
+				
+				(*this)[index] = false;
+				return true;			
+			}
 
-		bool operator[](size_t index) const
-		{
-			return vector[index];
-		}
+			bool get(size_t index) const
+			{
+				if( ! _is_valid(index) ) {
+					return false;
+				}
 
-		vector_t::value_type& operator[](size_t index)
-		{
-			return vector[index];
-		}
+				return (*this)[index];
+			}
+
+			const bool& operator[](size_t index) const
+			{
+				return vector[index];
+			}
+
+			bool& operator[](size_t index)
+			{
+				return const_cast<bool&>( 
+					static_cast<const characteristic_vector&>(*this)[index] 
+					);
+			}
 
 
-	protected:
-		using vector_t vector;
+		protected:
+			vector_t vector;
 
-		bool _is_valid(index) const
-		{
-			return index < vector.size();
-		}
-	}
+			bool _is_valid(size_t index) const
+			{
+				return index < vector.size();
+			}
+		};
+	};
 }
