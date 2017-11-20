@@ -14,12 +14,14 @@ namespace ax {
 		using bits_t = std::vector<byte_t>;
 		using size_t = std::size_t;
 
+		using byte_and_bit_indexes_t = std::pair<size_t, byte_t>;
+
 		static const byte_t byte_size = 8; 
 
 	public:
 		bitvector( size_t size ) 
 			: _lenght( size )
-			, _bitvector( bytes_count(size) )
+			, _bitvector( _bytes_count(size) )
 		{
 			for (auto& byte : _bitvector)
 				byte = byte_t( 0 );
@@ -28,7 +30,7 @@ namespace ax {
 		template<class T>
 		bitvector( std::initializer_list<T>& objects ) 
 			: _lenght( objects.size() )
-			, _bitvector( bytes_count(objects.size()) )
+			, _bitvector( _bytes_count(objects.size()) )
 		{
 			for (auto& byte : _bitvector)
 				byte = byte_t( 0 );
@@ -41,20 +43,29 @@ namespace ax {
 
 		bool operator[]( size_t index ) const
 		{
-			size_t byte_index = index / byte_size;
-			byte_t bit_index = index % byte_size;
+			auto [ byte_index, bit_index ] = _byte_and_bit_indexes( index );
 
-			byte_t bit_mask = 1 << bit_index;
-
-			return ( _bitvector[byte_index] & bit_mask ) ? true : false;
+			return ( _bitvector[byte_index] & _mask( bit_index ) ) ? true : false;
 		}
 
 		bool set( size_t index )
 		{
 			_check_index( index );
 
-			byte_t bit_mask = 1 << bit_index;
+			auto [ byte_index, bit_index ] = _byte_and_bit_indexes( index );
+			
+			_bitvector[byte_index] |= _mask( bit_index );
 		}
+
+		bool reset( size_t index )
+		{
+			_check_index( index );
+
+			auto [ byte_index, bit_index ] = _byte_and_bit_indexes( index );
+			
+			_bitvector[byte_index] ^= _mask( bit_index );
+		}
+
 
 	protected:
 		size_t _lenght;
@@ -67,9 +78,19 @@ namespace ax {
 			}
 		}
 		
-		static size_t bytes_count( size_t bits_count )
+		static size_t _bytes_count( size_t bits_count )
 		{
 			return static_cast<size_t>( ceil(bits_count / byte_size) );
+		}
+
+		static byte_t _mask( byte_t bit_index )
+		{
+			return (1 << bit_index);
+		}
+
+		static byte_and_bit_indexes_t _byte_and_bit_indexes( size_t index )
+		{
+			return byte_and_bit_indexes_t( index / byte_size, index % byte_size );
 		}
 	};
 

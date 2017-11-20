@@ -1,5 +1,5 @@
-Compiler := g++
-CVersion := -std=c++14
+Compiler := g++-7
+CVersion := -std=c++17
 Flags    := $(CVersion) -Wall
 
 
