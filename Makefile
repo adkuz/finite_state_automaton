@@ -15,5 +15,10 @@ test_bitvector:
 	$(Compiler) $(Flags) $(TestsDir)/bitvector.cpp -o bitvector_test.tst
 	./bitvector_test.tst
 
+low_iq_test:
+	$(Compiler) $(Flags) $(TestsDir)/low_iq_bitvector.cpp -o bitvector_test.tst
+	./bitvector_test.tst
+
+
 clear: 
 	rm -rf *.o *.tst *.out

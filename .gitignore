@@ -1,2 +1,3 @@
 build/
-build/**low_iq*
+build/*
+*low_iq*

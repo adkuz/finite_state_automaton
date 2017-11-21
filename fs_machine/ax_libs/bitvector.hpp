@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <cmath>
 #include <iostream>
 #include <vector>
@@ -21,19 +22,41 @@ namespace ax {
 	public:
 		bitvector( size_t size ) 
 			: _lenght( size )
-			, _bitvector( _bytes_count(size) )
+			, _byte_vector( _bytes_count(size) )
 		{
-			for (auto& byte : _bitvector)
+			for( byte_t& byte : _byte_vector )
 				byte = byte_t( 0 );
+
+			for( size_t i = 0; i < _lenght; ++i )
+				reset( i );
 		}
 
-		template<class T>
-		bitvector( std::initializer_list<T>& objects ) 
-			: _lenght( objects.size() )
-			, _bitvector( _bytes_count(objects.size()) )
+		bitvector( const bitvector& obj )
+			: _lenght( obj._lenght )
+			, _byte_vector( obj._byte_vector )
+		{}
+
+		bitvector( bitvector&& obj )
+			: _lenght( obj._lenght )
+			, _byte_vector( std::move(obj._byte_vector) )
+		{}
+
+		bitvector& operator = ( const bitvector& obj )
 		{
-			for (auto& byte : _bitvector)
-				byte = byte_t( 0 );
+			if( this != &obj ) {
+				this->_lenght = obj._lenght;
+				this->_byte_vector = obj._byte_vector;
+			}
+			return *this;
+		}
+
+		bitvector& operator = ( bitvector&& obj )
+		{
+			if( this != &obj ) {
+				this->_lenght = obj._lenght;
+				this->_byte_vector = std::move( obj._byte_vector );
+			}
+			return *this;
 		}
 
 		size_t length() const
@@ -45,7 +68,7 @@ namespace ax {
 		{
 			auto [ byte_index, bit_index ] = _byte_and_bit_indexes( index );
 
-			return ( _bitvector[byte_index] & _mask( bit_index ) ) ? true : false;
+			return ( _byte_vector[byte_index] & _mask( bit_index ) ) ? true : false;
 		}
 
 		bool set( size_t index )
@@ -54,7 +77,9 @@ namespace ax {
 
 			auto [ byte_index, bit_index ] = _byte_and_bit_indexes( index );
 			
-			_bitvector[byte_index] |= _mask( bit_index );
+			_byte_vector[byte_index] |= _mask( bit_index );
+
+			return true;
 		}
 
 		bool reset( size_t index )
@@ -63,18 +88,103 @@ namespace ax {
 
 			auto [ byte_index, bit_index ] = _byte_and_bit_indexes( index );
 			
-			_bitvector[byte_index] ^= _mask( bit_index );
+			_byte_vector[byte_index] &= ( _mask( bit_index ) ^ 0xff );
+
+			return true;
 		}
 
+		operator bool() const
+		{
+			for( auto byte : this->_byte_vector ) {
+				if( byte )
+					return true;
+			}
+
+			return false;
+		}
+
+		bitvector& operator &= ( const bitvector& rhs )
+		{
+			_check_legth( rhs.length() );
+
+			auto bytes_count = this->_byte_vector.size();
+
+			for( size_t i = 0; i < bytes_count; ++i ){
+				this->_byte_vector[i] &= rhs._byte_vector[i];
+			}
+			return *this;
+		}
+
+		bitvector& operator |= ( const bitvector& rhs )
+		{
+			_check_legth( rhs.length() );
+			
+			auto bytes_count = this->_byte_vector.size();
+
+			for( size_t i = 0; i < bytes_count; ++i ){
+				this->_byte_vector[i] |= rhs._byte_vector[i];
+			}
+			return *this;
+		}
+
+		bitvector& operator ^= ( const bitvector& rhs )
+		{
+			_check_legth( rhs.length() );
+
+			auto bytes_count = this->_byte_vector.size();
+
+			for( size_t i = 0; i < bytes_count; ++i ){
+				this->_byte_vector[i] ^= rhs._byte_vector[i];
+			}
+			return *this;
+		}
+
+		friend bitvector operator & ( const bitvector& lhs, const bitvector& rhs )
+		{
+			auto result( lhs );
+			result &= rhs;
+			return result;
+		}
+
+		friend bitvector operator | ( const bitvector& lhs, const bitvector& rhs )
+		{
+			auto result( lhs );
+			result |= rhs;
+			return result;
+		}
+
+		friend bitvector operator ^ ( const bitvector& lhs, const bitvector& rhs )
+		{
+			auto result( lhs );
+			result ^= rhs;
+			return result;
+		}
+
+		friend bool operator == ( const bitvector& lhs, const bitvector& rhs )
+		{
+			return ( (lhs | rhs) ) ? false : true;
+		}
+
+		friend bool operator != ( const bitvector& lhs, const bitvector& rhs )
+		{
+			return ( (lhs | rhs) ) ? true : false;
+		}
 
 	protected:
 		size_t _lenght;
-		bits_t _bitvector;
+		bits_t _byte_vector;
 
 		void _check_index( size_t index ) 
 		{
 			if( index >= _lenght ) {
 				throw std::out_of_range("Index is too high");
+			}
+		}
+
+		void _check_legth( size_t length )
+		{
+			if( length != this->_lenght ) {
+				throw std::invalid_argument("Lengths mismatch");
 			}
 		}
 		
@@ -100,11 +210,13 @@ namespace ax {
 		string_t sep = string_t(separator);
 
 		auto length = bv.length();
-		for( size_t i = 0; i < length; ++i ) {
+		for( size_t i = 0; i < length - 1; ) {
 			result += ( bv[i] ) ? '1' : '0';
-			if ( (i + 1) % block_size == 0 )
+			if ( (++i) % block_size == 0 )
 				result += sep;
 		}
+
+		result += ( bv[length - 1] ) ? '1' : '0';
 
 		return result;
 	}
