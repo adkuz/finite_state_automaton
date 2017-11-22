@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <iostream>
 #include <set>
+#include <vector>
 
 #include "main_test.hpp"
 #include "../fs_machine/ax_libs.hpp"
@@ -11,8 +12,26 @@ bool characteristic_function( const Container& container, const Value& value )
 	return std::find( std::begin(container), std::end(container), value ) != std::end(container);
 }
 
+template< class Container >
+void print( const Container& container )
+{
+	std::cout << "{  ";
+	for( auto& obj : container )
+		std::cout << obj << "  ";
+	std::cout << "}" << std::endl;
+}
 
-TEST_CASE( "Bitvector: scenario 1", "[ax::bitvector]" ) 
+template< class Container >
+ax::bitvector make_bitvector( size_t length, const Container& container )
+{
+	ax::bitvector result( length );
+	for( auto index : container )
+		result.set( index );
+	return result;
+}
+
+
+TEST_CASE( "Bitvector: low iq tests", "[ax::bitvector]" ) 
 {
 	const size_t length = 14;
 	auto bitvector = ax::bitvector( length );
@@ -150,6 +169,57 @@ TEST_CASE( "Bitvector: scenario 1", "[ax::bitvector]" )
 		}
     	REQUIRE( is_true == true );
     }
+
+    SECTION( "Testing binary operator" )
+    {
+    	const size_t size = 42;
+		const std::set<size_t> bitset1 = { 0, 1, 2, 3, 5, 8, 13, 21, 34 };
+		const std::set<size_t> bitset2 = { 1, 2, 4, 8, 16, 32 };
+		
+		std::vector<size_t> bits_union;
+		std::vector<size_t> bits_diff;
+		std::vector<size_t> bits_intersection;
+ 
+		std::set_union(
+			bitset1.begin(), bitset1.end(), 
+			bitset2.begin(), bitset2.end(), 
+			std::back_inserter(bits_union)
+		);
+
+		std::set_symmetric_difference(
+        	bitset1.begin(), bitset1.end(), 
+			bitset2.begin(), bitset2.end(), 
+        	std::back_inserter(bits_diff)
+        );
+
+        std::set_intersection(
+        	bitset1.begin(), bitset1.end(), 
+			bitset2.begin(), bitset2.end(), 
+			std::back_inserter(bits_intersection)
+        );
+
+        /*print( bitset1 );
+        print( bitset2 );
+        print( bits_union );
+        print( bits_diff );
+        print( bits_intersection );*/
+
+		ax::bitvector vector1 = make_bitvector( size, bitset1 );
+		ax::bitvector vector2 = make_bitvector( size, bitset2 );
+		ax::bitvector vector_union = make_bitvector( size, bits_union );
+		ax::bitvector vector_sum = make_bitvector( size, bits_diff );
+		ax::bitvector vector_intersection = make_bitvector( size, bits_intersection );
+
+		CAPTURE( ax::to_string( vector1 ) );
+		CAPTURE( ax::to_string( vector2 ) );
+		CAPTURE( ax::to_string( vector_union ) );
+		CAPTURE( ax::to_string( vector_sum ) );
+		CAPTURE( ax::to_string( vector_intersection ) );
+
+		REQUIRE( (vector1 & vector2) == vector_intersection );
+		REQUIRE( (vector1 | vector2) == vector_union );
+		REQUIRE( (vector1 ^ vector2) == vector_sum );
+	}
 }
 
 
