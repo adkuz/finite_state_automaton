@@ -24,11 +24,15 @@ namespace ax {
 			: _lenght( size )
 			, _byte_vector( _bytes_count(size) )
 		{
-			for( byte_t& byte : _byte_vector )
+			for( auto& byte : _byte_vector )
 				byte = byte_t( 0 );
+		}
 
-			for( size_t i = 0; i < _lenght; ++i )
-				reset( i );
+		bitvector( size_t size, std::initializer_list<size_t>& bits ) 
+			: bitvector( size )
+		{
+			for( auto& bit : bits )
+				this->set( bit );
 		}
 
 		bitvector( const bitvector& obj )
@@ -39,7 +43,11 @@ namespace ax {
 		bitvector( bitvector&& obj )
 			: _lenght( obj._lenght )
 			, _byte_vector( std::move(obj._byte_vector) )
-		{}
+		{
+			if( obj._byte_vector.empty() ) {
+				obj._lenght = 0;
+			}
+		}
 
 		bitvector& operator = ( const bitvector& obj )
 		{
@@ -55,6 +63,10 @@ namespace ax {
 			if( this != &obj ) {
 				this->_lenght = obj._lenght;
 				this->_byte_vector = std::move( obj._byte_vector );
+
+				if( obj._byte_vector.empty() ) {
+					obj._lenght = 0;
+				}
 			}
 			return *this;
 		}
@@ -162,12 +174,12 @@ namespace ax {
 
 		friend bool operator == ( const bitvector& lhs, const bitvector& rhs )
 		{
-			return ( (lhs | rhs) ) ? false : true;
+			return ( lhs ^ rhs ) ? false : true;
 		}
 
 		friend bool operator != ( const bitvector& lhs, const bitvector& rhs )
 		{
-			return ( (lhs | rhs) ) ? true : false;
+			return ( lhs ^ rhs ) ? true : false;
 		}
 
 		friend std::ostream& operator << ( std::ostream& ostr, const bitvector& bv )
