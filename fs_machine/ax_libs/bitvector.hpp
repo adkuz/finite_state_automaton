@@ -17,7 +17,7 @@ namespace ax {
 
 		using byte_and_bit_indexes_t = std::pair<size_t, byte_t>;
 
-		static const byte_t byte_size = 8; 
+		static const size_t byte_size = 8; 
 
 	public:
 		bitvector( size_t size ) 
@@ -170,6 +170,15 @@ namespace ax {
 			return ( (lhs | rhs) ) ? true : false;
 		}
 
+		friend std::ostream& operator << ( std::ostream& ostr, const bitvector& bv )
+		{
+			ostr << "[  ";
+			for( size_t i = 0; i < bv._byte_vector.size(); ++i ) {
+				ostr << uint(bv._byte_vector[i]) << "   ";
+			}
+			return ostr << "]:" << bv._byte_vector.size() << ":" << bv.length();
+		}
+
 	protected:
 		size_t _lenght;
 		bits_t _byte_vector;
@@ -190,7 +199,7 @@ namespace ax {
 		
 		static size_t _bytes_count( size_t bits_count )
 		{
-			return static_cast<size_t>( ceil(bits_count / byte_size) );
+			return static_cast<size_t>( ceil(float(bits_count) / byte_size) );
 		}
 
 		static byte_t _mask( byte_t bit_index )

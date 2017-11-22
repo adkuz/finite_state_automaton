@@ -12,15 +12,15 @@ bool characteristic_function( const Container& container, const Value& value )
 }
 
 
-TEST_CASE( "Bitvector: scenario 1", "[ax::bitvector]" ) 
+TEST_CASE( "Bitvector: set / reset", "[ax::bitvector]" ) 
 {
-	
-	auto bitvector = ax::bitvector( 14 );
+	const size_t length = 14;
+	auto bitvector = ax::bitvector( length );
 
-	SECTION( "Setting bits" ) 
+	SECTION( "Testing set/reset" ) 
 	{
-		std::set<size_t> bits_to_set = { 0, 1, 2, 3, 5, 8, 13 };
-		std::set<size_t> bits_to_reset = { 1, 2, 4, 8 }; 
+		const std::set<size_t> bits_to_set = { 0, 1, 2, 3, 5, 8, 13 };
+		const std::set<size_t> bits_to_reset = { 1, 2, 4, 8 }; 
 		std::set<size_t> result_bits;
 		
 		std::set_difference(
@@ -29,23 +29,39 @@ TEST_CASE( "Bitvector: scenario 1", "[ax::bitvector]" )
 			std::inserter( result_bits, result_bits.begin() )
 		);
 
-		for( auto bit : bits_to_set ) {
+		for( auto bit : bits_to_set )
 			bitvector.set( bit );
-			std::cout << bit 
-				  << " : " 
-				  << ax::to_string( bitvector )
-				  << std::endl;
-		}
 
 		for( size_t i = 0; i < bitvector.length(); ++i ) {
-			CAPTURE( i );
+			auto bit_index = i;
+			CAPTURE( bit_index );
 			CAPTURE( ax::to_string( bitvector ) );
 			REQUIRE( bitvector[i] == characteristic_function( bits_to_set, i ) );
 		}
+
+		for( auto bit : bits_to_reset )
+			bitvector.reset( bit );
+		
+		for( size_t i = 0; i < bitvector.length(); ++i ) {
+			auto bit_index = i;
+			CAPTURE( bit_index );
+			CAPTURE( ax::to_string( bitvector ) );
+			REQUIRE( bitvector[i] == characteristic_function( result_bits, i ) );
+		}
+
 	}
 		
 	SECTION( "Testing operator[]" )
     {
+    	CAPTURE( ax::to_string( bitvector ) );
+    	
+    	bitvector.set( 0 );
+    	bitvector.set( 3 );
+    	bitvector.set( 6 );
+    	bitvector.set( 13 );
+
+    	bitvector.reset( 6 );
+
     	REQUIRE( bitvector[0] == true );
     	REQUIRE( bitvector[3] == true );
     	REQUIRE( bitvector[6] == false );
@@ -55,14 +71,17 @@ TEST_CASE( "Bitvector: scenario 1", "[ax::bitvector]" )
 
     SECTION( "Testing convert bitset to string by ax::to_string" )
     {
-    	INFO( "Something wrong" )
-    	REQUIRE( ax::string_t("0000 0000 0000 00") == ax::string_t("0000 0000 0000 00") );
+    	bitvector.set( 0 );
+    	REQUIRE( ax::to_string( bitvector, "--" )      == "1000--0000--0000--00" );
+
+    	bitvector.set( 6 );
+	    REQUIRE( ax::to_string( bitvector, "^" , 3 )   == "100^000^100^000^00" );
+
+    	bitvector.set( 13 );
+    	bitvector.reset( 0 );
+    	REQUIRE( ax::to_string( bitvector, "..." , 5 ) == "00000...01000...0001" );
+    	REQUIRE( ax::to_string( bitvector, "," , 2 )   == "00,00,00,10,00,00,01" );    	
     }
-    /*
-    std::cout << ax::to_string( bitset, "--" );
-    std::cout << ax::to_string( bitset, "^" , 3 );
-    std::cout << ax::to_string( bitset, "..." , 5 );
-    */
 }
 
 
