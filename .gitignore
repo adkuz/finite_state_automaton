@@ -3,3 +3,5 @@ build/*
 *low_iq*
 *.o
 *.tst
+
+*.out
