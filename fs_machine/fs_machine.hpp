@@ -28,7 +28,7 @@ namespace machines {
 
 
 
-		bool set_state_as_finite( state_index_t state_index )
+		bool set_state_as_final( state_index_t state_index )
 		{
 			if( _is_valid_state( state_index ) ) {
 				
@@ -38,7 +38,7 @@ namespace machines {
 			return false;
 		}
 
-		bool unset_state_as_finite( state_index_t state_index )
+		bool unset_state_as_final( state_index_t state_index )
 		{
 			if( _is_valid_state( state_index ) ) {
 				
@@ -83,6 +83,10 @@ namespace machines {
 			return _symbols_count;
 		}
 
+		bool is_final_state( state_index_t state_index ) const
+		{
+			return this->_final_states[ state_index ];
+		}
 
 	protected:
 		size_t _states_count;
@@ -94,11 +98,6 @@ namespace machines {
 		bool _is_valid_state( state_index_t state_index ) const
 		{
 			return state_index < this->_states_count;
-		}
-
-		bool _is_final_state( state_index_t state_index ) const
-		{
-			return this->_final_states[ state_index ];
-		}
+		}		
 	};
 }
