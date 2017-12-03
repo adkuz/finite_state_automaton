@@ -49,7 +49,7 @@ namespace ax {
 			}
 		}
 
-		bitvector& operator = ( const bitvector& obj )
+		bitvector& operator= ( const bitvector& obj )
 		{
 			if( this != &obj ) {
 				this->_lenght = obj._lenght;
@@ -58,7 +58,7 @@ namespace ax {
 			return *this;
 		}
 
-		bitvector& operator = ( bitvector&& obj )
+		bitvector& operator= ( bitvector&& obj )
 		{
 			if( this != &obj ) {
 				this->_lenght = obj._lenght;

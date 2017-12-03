@@ -1,6 +1,6 @@
 #include <string>
 
-#include "../src/tensor/Matrix.hpp"
+#include "../fs_machine/ax_libs/matrix.hpp"
 
 #include "main_test.hpp"
 
@@ -192,98 +192,3 @@ TEST_CASE( "Testing constructors ( and operator = )" )
 		}
 	}	
 }
-
-TEST_CASE( "Testing equality operator")
-{
-	SECTION( "Simple test 1" )
-	{
-		types::matrix<int> a = {
-			{ 1, 2, 3 },
-			{ 1, 4, 9 },
-		};
-
-		auto b = types::matrix<int>( 2, 3, []( auto r, auto c ){ return pow(( c + 1 ), r+1);});
-
-		types::matrix<int> c = {
-			{ 1, 2, 3 },
-			{ 1, 42, 9 },
-		};
-
-		REQUIRE( a == b );
-		REQUIRE( a != c );
-		REQUIRE( b != c );
-	}
-}
-
-TEST_CASE( "Testing operator + " )
-{
-	SECTION( "type = <int>" )
-	{
-		types::matrix<int> squares( 3, 8 );
-		types::matrix<int> numbers = squares;
-		types::matrix<int> units( squares.height(), numbers.width(), 1 );
-
-		auto f = []( auto x, auto y ){ return 3*x + y; };
-
-		for( size_t i = 0; i < 3; ++i )
-			for( size_t j = 0; j < 8; ++j ) {
-				numbers( i, j ) = f( i, j );
-				squares( i, j ) = f( i, j ) * numbers( i, j );
-			}
-
-		auto result = squares;
-
-		result += numbers + numbers + units;
-
-		for( size_t i = 0; i < 3; ++i )
-			for( size_t j = 0; j < 8; ++j ) 
-				REQUIRE( result( i, j ) ==  ((f( i, j ) + 1) * (f( i, j ) + 1)) );
-	}
-
-	SECTION( "type = <std::string>" )
-	{
-		types::matrix<std::string> words1 = {
-			{ std::string( "Neural" ), std::string( "are" ) },
-			{ std::string( "q1" ), std::string( "q3" ) },
-		};
-
-		types::matrix<std::string> spaces( 2, 2, std::string(" ") );
-
-		types::matrix<std::string> words2 = {
-			{ std::string( "networks" ), std::string( "cool" ) },
-			{ std::string( "q2" ), std::string( "q4" ) },
-		};
-
-		auto result = words1 + spaces;
-		result += words2;
-
-		REQUIRE( result( 0, 0 ) + " " + result( 0, 1 ) == "Neural networks are cool" );
-		REQUIRE( result( 1, 0 ) == "q1 q2" );
-	}
-}
-
-TEST_CASE( "Testing matrix multiplication" )
-{
-	SECTION( "Test1" )
-	{
-		types::matrix<int> a = {
-			{ 1, 2, 3 },
-			{ 1, 4, 9 },
-		};
-
-		types::matrix<int> b = {
-			{ 1, 2, 3, 5, 8, 13 },
-			{ 3, 2, 0, 6, 9, -3 },
-			{ 1, 0, 3, 5, 8, -1 },
-		};
-
-		types::matrix<int> axb = {
-			{ 10, 6,  12, 32, 50,   4 },
-			{ 22, 10, 30, 74, 116, -8 }
-		};
-
-		REQUIRE( a * b == axb );
-	}
-}
-
-

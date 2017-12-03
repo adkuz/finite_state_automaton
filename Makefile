@@ -9,17 +9,22 @@ AxLibDir := fs_machine/ax_libs
 TestsDir := tests
 
 
-test_all: test_bitvector
+test_all: bitvector_test matrix_test
 	
 
-test_bitvector: 
-	$(Compiler) $(Flags) $(TestsDir)/bitvector.cpp -o bitvector_test.tst
-	./bitvector_test.tst
+bitvector_test: 
+	$(Compiler) $(Flags) $(TestsDir)/bitvector.cpp -o bitvector.test.bin
+	./bitvector.test.bin
 
-low_iq_test:
-	$(Compiler) $(Flags) $(TestsDir)/low_iq_bitvector.cpp -o bitvector_test.tst
-	./bitvector_test.tst
+matrix_test:
+	$(Compiler) $(Flags) $(TestsDir)/matrix.cpp -o matrix.test.bin
+	./matrix.test.bin
+
+base_fsm_test:
+	$(Compiler) $(Flags) $(TestsDir)/base_fsm.cpp -o base_fsm.test.bin
+	./base_fsm.test.bin
+
 
 
 clear: 
-	rm -rf *.o *.tst *.out
+	rm -rf *.o *.bin *.out

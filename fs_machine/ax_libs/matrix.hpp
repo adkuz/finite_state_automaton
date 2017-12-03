@@ -7,7 +7,7 @@
 
 
 
-namespace types {
+namespace ax {
 
 	template<class T>
 	class matrix
@@ -145,66 +145,6 @@ namespace types {
 			return _matrix_data;
 		}
 
-		matrix& operator+=( const matrix& rhs )
-        {
-        	_check_size_with_exception( *this, rhs );
-
-            for( size_t i = 0; i < this->_matrix_data.size(); ++i )
-            {
-                this->_matrix_data[i] += rhs._matrix_data[i];
-            }
-            return *this;
-        }
-
-        friend bool operator==( const matrix& lhs, const matrix& rhs )
-        {
-        	_check_size_with_exception( lhs, rhs );
-
-        	for( size_t i = 0; i < lhs._matrix_data.size(); ++i )
-        		if( lhs._matrix_data[i] != rhs._matrix_data[i] )
-        			return false;
-
-        	return true;
-        }
-
-        friend bool operator!=( const matrix& lhs, const matrix& rhs )
-        {
-        	_check_size_with_exception( lhs, rhs );
-
-        	for( size_t i = 0; i < lhs._matrix_data.size(); ++i )
-        		if( lhs._matrix_data[i] != rhs._matrix_data[i] )
-        			return true;
-
-        	return false;
-        }
-
-	    friend matrix operator+( const matrix& lhs, const matrix& rhs )
-	    {
-	        auto tmp = lhs;
-	        tmp += rhs;
-	        return tmp;
-	    }
-	     
-	    friend matrix operator*( const matrix& lhs, const matrix& rhs )
-	    {
-	    	if( lhs.width() != rhs.height() )
-				throw std::invalid_argument( "Matrix sizes mismatch" );
-
-			size_type magic_number = lhs.width();
-
-	        return matrix( lhs.height(), rhs.width(), 
-	        				[magic_number, &lhs, &rhs]( auto r, auto c )
-	        				{
-	        					value_type val( 0 );
-	        					for( size_type i = 0; i < magic_number; ++i )
-	        						val += lhs( r, i ) * rhs( i, c );
-
-	        					return val;
-	        				}
-	        	   );
-	    }
-	    
-
 	protected:
 		size_type   _width;
 		size_type   _height;
@@ -217,4 +157,6 @@ namespace types {
 			}
 		}
 	};
+
+
 }
