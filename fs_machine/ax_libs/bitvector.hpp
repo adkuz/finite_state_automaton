@@ -1,3 +1,5 @@
+#pragma once
+
 #include <algorithm>
 #include <cmath>
 #include <iostream>
@@ -78,6 +80,8 @@ namespace ax {
 
 		bool operator[]( size_t index ) const
 		{
+			_check_index( index );
+			
 			auto [ byte_index, bit_index ] = _byte_and_bit_indexes( index );
 
 			return ( _byte_vector[byte_index] & _mask( bit_index ) ) ? true : false;
@@ -195,7 +199,7 @@ namespace ax {
 		size_t _lenght;
 		bits_t _byte_vector;
 
-		void _check_index( size_t index ) 
+		void _check_index( size_t index ) const
 		{
 			if( index >= _lenght ) {
 				throw std::out_of_range("Index is too high");
@@ -225,19 +229,20 @@ namespace ax {
 		}
 	};
 
-	string_t to_string(const bitvector& bv, const char* separator = " ",  size_t block_size = 4)
+	string_t to_string(const bitvector& bv, const char* separator = " ",  size_t block_size = 4, 
+		const char* zero = "0", const char* unit = "1")
 	{
 		string_t result;
 		string_t sep = string_t(separator);
 
 		auto length = bv.length();
 		for( size_t i = 0; i < length - 1; ) {
-			result += ( bv[i] ) ? '1' : '0';
+			result += ( bv[i] ) ? unit : zero;
 			if ( (++i) % block_size == 0 )
 				result += sep;
 		}
 
-		result += ( bv[length - 1] ) ? '1' : '0';
+		result += ( bv[length - 1] ) ? unit : zero;
 
 		return result;
 	}

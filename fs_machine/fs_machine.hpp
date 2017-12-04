@@ -1,76 +1,42 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+
+
 #include "ax_libs.hpp"
+#include "base_fs_machine.hpp"
 
 
 namespace machines {
 
-	class base_finite_state_machine 
+
+	class finite_state_machine : public base_finite_state_machine
 	{
 	public:
-		using size_t = std::size_t;
-		using state_index_t = unsigned short int;
-		using symbol_index_t = unsigned short int;
-
-		using transition_table_t = ax::matrix<state_index_t>;
-		using nondet_transition_table_t = ax::matrix<ax::bitvector>;
-
-		using final_states_t = ax::bitvector;
-
-		static constexpr size_t max_state_cout = 8 * sizeof( state_index_t );
+		using characteristic_vector = ax::bitvector;
+		using transition_table_t = ax::matrix<characteristic_vector>;
 
 	public:
-
-		base_finite_state_machine( size_t states_count, size_t symbols_count )
-			: _states_count( states_count )
-			, _symbols_count( symbols_count )
-			, _initial_state( 0 )
-			, _final_states( states_count )
+		finite_state_machine(  size_t states_count, size_t symbols_count )
+			: base_finite_state_machine( states_count, symbols_count )
+			, _transition_table( states_count, symbols_count, characteristic_vector( states_count ) )
 		{}
 
-
-
-		bool set_state_as_final( state_index_t state_index )
+		void add_rule( state_index_t state, symbol_index_t symbol,
+			state_index_t next_state ) 
 		{
-			if( _is_valid_state( state_index ) ) {
-				
-				_final_states.set( state_index );
-				return true;
-			}
-			return false;
+			_transition_table( state, symbol ).set( next_state );
 		}
 
-		bool unset_state_as_final( state_index_t state_index )
+		void delete_rule( state_index_t state, symbol_index_t symbol,
+			state_index_t next_state )
 		{
-			if( _is_valid_state( state_index ) ) {
-				
-				_final_states.reset( state_index );
-				return true;
-			}
-			return false;
+			_transition_table( state, symbol ).reset( next_state );
 		}
 
-		template<class It>
-		bool set_finite_states( It begin, It end )
+		void delete_all_rules( state_index_t state, symbol_index_t symbol )
 		{
-			auto new_final_states = final_states_t( states_count );
-			bool is_all_right = true;
-
-			for( auto it = begin; it != end; it = std::next(it) ) {
-				is_all_right = is_all_right && set_state_as_finite( *it );
-			}
-
-			_final_states = std::move( new_final_states );
-
-			return is_all_right;
-		}
-
-		bool set_initial_state( state_index_t state_index )
-		{
-			if( _is_valid_state( state_index ) ) {
-				
-				_initial_state = state_index;
-				return true;
-			}
-			return false;
+			_transition_table( state, symbol ) = std::move( characteristic_vector(_states_count) );
 		}
 
 		size_t states_count() const
@@ -83,21 +49,26 @@ namespace machines {
 			return _symbols_count;
 		}
 
-		bool is_final_state( state_index_t state_index ) const
+		friend std::ostream& operator<< ( std::ostream& ostr, const finite_state_machine& machine )
 		{
-			return this->_final_states[ state_index ];
+			ostr << "{ states : " << std::to_string( machine.states_count() ) << " ; " << std::endl;
+			ostr <<  "symbols : " << std::to_string( machine.symbols_count() ) << " }" << std::endl;
+
+			for( size_t state = 0; state < machine.states_count(); ++ state ) {
+				ostr << std::setw(3) << state << " : ";
+				for( size_t symbol = 0; symbol < machine.symbols_count(); ++symbol ) {
+					ostr << "[ " 
+						 << ax::to_string(machine._transition_table( state, symbol ), "", 8, "_", "1") 
+						 << " ] ";
+				}
+				ostr << std::endl;
+			}
+			return ostr;
 		}
 
 	protected:
-		size_t _states_count;
-		size_t _symbols_count;
+		transition_table_t  _transition_table;
 
-		state_index_t  _initial_state; 	
-		final_states_t _final_states;
-
-		bool _is_valid_state( state_index_t state_index ) const
-		{
-			return state_index < this->_states_count;
-		}		
+			
 	};
 }

@@ -1,7 +1,6 @@
 #include <string>
 
 #include "../fs_machine/ax_libs/matrix.hpp"
-
 #include "main_test.hpp"
 
 
@@ -10,7 +9,7 @@ TEST_CASE( "Testing constructors ( and operator = )" )
 {
 	SECTION( "Null constructor" )
 	{
-		auto empty_matrix = types::matrix<float>();
+		auto empty_matrix = ax::matrix<float>();
 
 		INFO( "Constructor requires row counts, column counts and default value." );
 		INFO( "Default is ( 0, 0, value_type(0) ) ." );
@@ -23,7 +22,7 @@ TEST_CASE( "Testing constructors ( and operator = )" )
 	{
 
 		INFO( "Constructing matrix 3x15" );
-		auto matrix = types::matrix<float>( 3, 15, 42. );
+		auto matrix = ax::matrix<float>( 3, 15, 42. );
 
 
 		SECTION( "Checking size" )
@@ -49,7 +48,7 @@ TEST_CASE( "Testing constructors ( and operator = )" )
 			INFO( "Constructing matrix 3x15" );
 			std::vector<int> a = { 3, 7, 2, 1, 5 };
 			std::vector<int> b = { 3, 2, 1, 6 };
-			auto matrix = types::matrix<int>( a.size(), b.size(), 
+			auto matrix = ax::matrix<int>( a.size(), b.size(), 
 							[ &a, &b ]( auto row, auto col )
 							{
 								return a[row] * b[col];
@@ -76,7 +75,7 @@ TEST_CASE( "Testing constructors ( and operator = )" )
 	{
 		INFO( "Constructing matrix 6x4" );
 
-		types::matrix<float> matrix = {
+		ax::matrix<float> matrix = {
 			{ 0,    2,  5 ,  0  },
 			{ 1,    2,  3,   4  },
 			{ -.07, 4,  3,   15 },
@@ -105,7 +104,7 @@ TEST_CASE( "Testing constructors ( and operator = )" )
 	{
 		INFO( "Constructing matrix 6x4" );
 
-		types::matrix<float> matrix = {
+		ax::matrix<float> matrix = {
 			{ 0,    2,  5 ,  0  },
 			{ 1,    2,  3,   4  },
 			{ -.07, 4,  3,   15 },

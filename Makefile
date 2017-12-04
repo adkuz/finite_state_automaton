@@ -24,7 +24,11 @@ base_fsm_test:
 	$(Compiler) $(Flags) $(TestsDir)/base_fsm.cpp -o base_fsm.test.bin
 	./base_fsm.test.bin
 
+machines: finite_state
 
+finite_state:
+	$(Compiler) $(Flags) $(TestsDir)/finite_state_machine.cpp -o finite_state_machine.test.bin
+	./finite_state_machine.test.bin
 
 clear: 
 	rm -rf *.o *.bin *.out

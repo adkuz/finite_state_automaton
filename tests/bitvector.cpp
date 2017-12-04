@@ -6,6 +6,7 @@
 #include "main_test.hpp"
 #include "../fs_machine/ax_libs.hpp"
 
+
 template< class Container, class Value >
 bool characteristic_function( const Container& container, const Value& value )
 {
