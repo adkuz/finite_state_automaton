@@ -14,8 +14,14 @@ TEST_CASE( "Test base_finite_state_machine: get-methods" )
 
 	auto machine = machine_t( 10, 17 );
 
+	INFO( "First argument is states count" );
 	REQUIRE( machine.states_count() == 10 );
+
+	INFO( "Second argument is symbols count" );
 	REQUIRE( machine.symbols_count() == 17 );
+
+	INFO( "Default start state index is 0" );
+	REQUIRE( machine.get_start_state() == 0);
 
 }
 
@@ -32,29 +38,29 @@ TEST_CASE( "Test base_finite_state_machine: final states" )
 		});
 
 		auto not_final_states_set = std::unordered_set<int>({
-			2, 8, 
+			2, 8,
 		});
 
 		for( auto state_index : final_states_set ) {
-			machine.set_state_as_final( state_index );
-		}	
-
-		REQUIRE( machine.is_final_state( 2  ) == true );
-		REQUIRE( machine.is_final_state( 7  ) == true );
-		REQUIRE( machine.is_final_state( 3  ) == true );
-
-		REQUIRE( machine.is_final_state( 5  ) == false );
-
-		for( auto state_index : not_final_states_set ) {
-			machine.unset_state_as_final( state_index );
+			machine.add_final_state( state_index );
 		}
 
-		REQUIRE( machine.is_final_state( 7  ) == true );
-		REQUIRE( machine.is_final_state( 3  ) == true );
+		REQUIRE( machine.is_final_state( 2 ) == true );
+		REQUIRE( machine.is_final_state( 7 ) == true );
+		REQUIRE( machine.is_final_state( 3 ) == true );
 
-		REQUIRE( machine.is_final_state( 2  ) == false );
-		REQUIRE( machine.is_final_state( 5  ) == false );
-		REQUIRE( machine.is_final_state( 8  ) == false );
+		REQUIRE( machine.is_final_state( 5 ) == false );
+
+		for( auto state_index : not_final_states_set ) {
+			machine.delete_final_state( state_index );
+		}
+
+		REQUIRE( machine.is_final_state( 7 ) == true );
+		REQUIRE( machine.is_final_state( 3 ) == true );
+
+		REQUIRE( machine.is_final_state( 2 ) == false );
+		REQUIRE( machine.is_final_state( 5 ) == false );
+		REQUIRE( machine.is_final_state( 8 ) == false );
 	}
 
 	SECTION( "Setting finite states : set_finite_states" )
@@ -66,11 +72,11 @@ TEST_CASE( "Test base_finite_state_machine: final states" )
 			2, 5, 8, 0, 1,
 		});
 
-		machine.set_finite_states( 
+		machine.set_final_states(
 			std::begin(final_states_set),
 			std::end(final_states_set)
 		);
-			
+
 
 		REQUIRE( machine.is_final_state( 2 ) == true );
 		REQUIRE( machine.is_final_state( 4 ) == true );
@@ -80,7 +86,7 @@ TEST_CASE( "Test base_finite_state_machine: final states" )
 		REQUIRE( machine.is_final_state( 5 ) == false );
 
 
-		machine.set_finite_states( 
+		machine.set_final_states(
 			std::begin(final_states_vector),
 			std::end(final_states_vector)
 		);

@@ -22,7 +22,6 @@ namespace ax {
 
 	public:
 
-
 		matrix( size_type height = 0, size_type width = 0,
 			value_type default_value = value_type(0))
 			: _col_count ( width )
@@ -38,7 +37,7 @@ namespace ax {
 			for( size_type row = 0; row < _row_count; ++row )
 				for( size_type col = 0; col < _col_count; ++col )
 					(*this)( row, col ) = function( row, col );
-		}	
+		}
 
 
 		matrix( const matrix& obj )
@@ -57,7 +56,7 @@ namespace ax {
 			std::swap( _matrix_data, obj._matrix_data );
 		}
 
-		matrix& operator=( const matrix& obj ) 
+		matrix& operator=( const matrix& obj )
 		{
             if ( this != &obj )
             {
@@ -84,8 +83,7 @@ namespace ax {
             _row_count = rows.size();
 
             if( _row_count ) {
-
-	           _col_count  = rows.begin()->size();
+	           _col_count  = std::begin(rows)->size();
 
 	            for ( auto& row : rows )
 	            {
@@ -101,7 +99,7 @@ namespace ax {
 	            }
 	       	}
 	       	else {
-	       	 _col_count = 0;
+	       	 	_col_count = 0;
 	       	}
 		}
 
@@ -113,10 +111,10 @@ namespace ax {
 			, _matrix_data( begin, end )
 		{
 			if( _matrix_data.size() != _col_count * _row_count ) {
-			 _col_count = 0;
+			 	_col_count = 0;
 				_row_count = 0;
 				_matrix_data.clear();
-                
+
                 throw std::logic_error( "Error! Incorrect initialization matrix" );
 			}
 		}
@@ -128,15 +126,17 @@ namespace ax {
 
 		value_type& operator()( size_type row, size_type col )
 		{
-			return const_cast<value_type&>( const_cast<const matrix&>(*this)( row, col ) );
+			return const_cast<value_type&>(
+				const_cast<const matrix&>(*this)( row, col )
+			);
 		}
 
-		size_type width() const
+		size_type col_count() const
 		{
 			return _col_count;
 		}
 
-		size_type height() const
+		size_type row_count() const
 		{
 			return _row_count;
 		}
@@ -158,7 +158,7 @@ namespace ax {
 			}
 		}
 
-		void _check_cell( size_type row, size_type col )
+		void _check_cell_with_exception( size_type row, size_type col )
 		{
 			if( row >= _row_count || col >= _col_count ){
 				throw std::invalid_argument( "Invalid cell index" );

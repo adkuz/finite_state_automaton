@@ -14,8 +14,8 @@ TEST_CASE( "Testing constructors ( and operator = )" )
 		INFO( "Constructor requires row counts, column counts and default value." );
 		INFO( "Default is ( 0, 0, value_type(0) ) ." );
 
-		REQUIRE( empty_matrix.width() == 0 );
-		REQUIRE( empty_matrix.height() == 0 );
+		REQUIRE( empty_matrix.col_count() == 0 );
+		REQUIRE( empty_matrix.row_count() == 0 );
 	}
 
 	SECTION( "Constructor with default value" )
@@ -27,8 +27,8 @@ TEST_CASE( "Testing constructors ( and operator = )" )
 
 		SECTION( "Checking size" )
 		{
-			REQUIRE( matrix.width() == 15 );
-			REQUIRE( matrix.height() == 3 );
+			REQUIRE( matrix.col_count() == 15 );
+			REQUIRE( matrix.row_count() == 3 );
 		}
 
 		SECTION( "Chcecking cells, default value is, of course, 42.0 ." )
@@ -44,11 +44,11 @@ TEST_CASE( "Testing constructors ( and operator = )" )
 
 		SECTION( " - lambda" )
 		{
-			
+
 			INFO( "Constructing matrix 3x15" );
 			std::vector<int> a = { 3, 7, 2, 1, 5 };
 			std::vector<int> b = { 3, 2, 1, 6 };
-			auto matrix = ax::matrix<int>( a.size(), b.size(), 
+			auto matrix = ax::matrix<int>( a.size(), b.size(),
 							[ &a, &b ]( auto row, auto col )
 							{
 								return a[row] * b[col];
@@ -58,14 +58,14 @@ TEST_CASE( "Testing constructors ( and operator = )" )
 
 			SECTION( "Checking size" )
 			{
-				REQUIRE( matrix.width() == 4 );
-				REQUIRE( matrix.height() == 5 );
+				REQUIRE( matrix.col_count() == 4 );
+				REQUIRE( matrix.row_count() == 5 );
 			}
 
 			SECTION( "Chcecking cells" )
 			{
-				for( size_t r = 0; r < matrix.height(); ++r )
-					for( size_t c = 0; c < matrix.width(); ++c )
+				for( size_t r = 0; r < matrix.row_count(); ++r )
+					for( size_t c = 0; c < matrix.col_count(); ++c )
 						REQUIRE( matrix( r, c ) == a[r] * b[c] );
 			}
 		}
@@ -86,8 +86,8 @@ TEST_CASE( "Testing constructors ( and operator = )" )
 
 		SECTION( "Checking size" )
 		{
-			REQUIRE( matrix.width() == 4 );
-			REQUIRE( matrix.height() == 6 );
+			REQUIRE( matrix.col_count() == 4 );
+			REQUIRE( matrix.row_count() == 6 );
 		}
 
 		SECTION( "Checking cells" )
@@ -117,8 +117,8 @@ TEST_CASE( "Testing constructors ( and operator = )" )
 		{
 			auto matrix_copy = matrix;
 
-			for( size_t row = 0; row < matrix.height(); ++row )
-				for( size_t col = 0; col < matrix.width(); ++col )
+			for( size_t row = 0; row < matrix.row_count(); ++row )
+				for( size_t col = 0; col < matrix.col_count(); ++col )
 					REQUIRE( matrix(row, col) == matrix_copy(row, col) );
 		}
 
@@ -126,17 +126,17 @@ TEST_CASE( "Testing constructors ( and operator = )" )
 		{
 			auto moved_matrix = std::move( matrix );
 
-			REQUIRE( moved_matrix.width() == 4 );
-			REQUIRE( moved_matrix.height() == 6 );
+			REQUIRE( moved_matrix.col_count() == 4 );
+			REQUIRE( moved_matrix.row_count() == 6 );
 
-			REQUIRE( matrix.width() == 0 );
-			REQUIRE( matrix.height() == 0 );
+			REQUIRE( matrix.col_count() == 0 );
+			REQUIRE( matrix.row_count() == 0 );
 
 			REQUIRE( moved_matrix( 0, 0 ) == 0 );
 			REQUIRE( moved_matrix( 1, 2 ) == 3 );
 			REQUIRE( moved_matrix( 3, 1 ) == 8 );
 			REQUIRE( moved_matrix( 5, 3 ) == 1 );
-			REQUIRE( moved_matrix( 2, 3 ) == 15 );	
+			REQUIRE( moved_matrix( 2, 3 ) == 15 );
 		}
 
 		SECTION( "Testing copy operator=" )
@@ -147,8 +147,8 @@ TEST_CASE( "Testing constructors ( and operator = )" )
 
 			SECTION( "Checking size" )
 			{
-				REQUIRE( new_matrix.width() == 4 );
-				REQUIRE( new_matrix.height() == 6 );
+				REQUIRE( new_matrix.col_count() == 4 );
+				REQUIRE( new_matrix.row_count() == 6 );
 			}
 
 			SECTION( "Checking cells" )
@@ -163,17 +163,17 @@ TEST_CASE( "Testing constructors ( and operator = )" )
 
 		SECTION( "Testing move operator=" )
 		{
-			decltype( matrix ) new_matrix( 3, 2, 1 ); 
+			decltype( matrix ) new_matrix( 3, 2, 1 );
 
 			new_matrix = std::move( matrix );
 
 			SECTION( "Checking sizes" )
 			{
-				REQUIRE( matrix.width() == 2 );
-				REQUIRE( matrix.height() == 3 );
+				REQUIRE( matrix.col_count() == 2 );
+				REQUIRE( matrix.row_count() == 3 );
 
-				REQUIRE( new_matrix.width() == 4 );
-				REQUIRE( new_matrix.height() == 6 );
+				REQUIRE( new_matrix.col_count() == 4 );
+				REQUIRE( new_matrix.row_count() == 6 );
 			}
 
 			SECTION( "Checking cells" )
@@ -189,5 +189,5 @@ TEST_CASE( "Testing constructors ( and operator = )" )
 				REQUIRE( new_matrix( 2, 3 ) == 15 );
 			}
 		}
-	}	
+	}
 }

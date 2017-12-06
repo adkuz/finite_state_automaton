@@ -19,10 +19,10 @@ namespace ax {
 
 		using byte_and_bit_indexes_t = std::pair<size_t, byte_t>;
 
-		static const size_t byte_size = 8; 
+		static const size_t byte_size = 8;
 
 	public:
-		bitvector( size_t size ) 
+		bitvector( size_t size )
 			: _lenght( size )
 			, _byte_vector( _bytes_count(size) )
 		{
@@ -30,7 +30,7 @@ namespace ax {
 				byte = byte_t( 0 );
 		}
 
-		bitvector( size_t size, std::initializer_list<size_t>& bits ) 
+		bitvector( size_t size, std::initializer_list<size_t>& bits )
 			: bitvector( size )
 		{
 			for( auto& bit : bits )
@@ -81,7 +81,7 @@ namespace ax {
 		bool operator[]( size_t index ) const
 		{
 			_check_index( index );
-			
+
 			auto [ byte_index, bit_index ] = _byte_and_bit_indexes( index );
 
 			return ( _byte_vector[byte_index] & _mask( bit_index ) ) ? true : false;
@@ -92,7 +92,7 @@ namespace ax {
 			_check_index( index );
 
 			auto [ byte_index, bit_index ] = _byte_and_bit_indexes( index );
-			
+
 			_byte_vector[byte_index] |= _mask( bit_index );
 
 			return true;
@@ -103,7 +103,7 @@ namespace ax {
 			_check_index( index );
 
 			auto [ byte_index, bit_index ] = _byte_and_bit_indexes( index );
-			
+
 			_byte_vector[byte_index] &= ( _mask( bit_index ) ^ 0xff );
 
 			return true;
@@ -134,7 +134,7 @@ namespace ax {
 		bitvector& operator |= ( const bitvector& rhs )
 		{
 			_check_legth( rhs.length() );
-			
+
 			auto bytes_count = this->_byte_vector.size();
 
 			for( size_t i = 0; i < bytes_count; ++i ){
@@ -202,7 +202,7 @@ namespace ax {
 		void _check_index( size_t index ) const
 		{
 			if( index >= _lenght ) {
-				throw std::out_of_range("Index is too high");
+				throw std::out_of_range("Index is not less than length!");
 			}
 		}
 
@@ -212,7 +212,7 @@ namespace ax {
 				throw std::invalid_argument("Lengths mismatch");
 			}
 		}
-		
+
 		static size_t _bytes_count( size_t bits_count )
 		{
 			return static_cast<size_t>( ceil(float(bits_count) / byte_size) );
@@ -229,7 +229,7 @@ namespace ax {
 		}
 	};
 
-	string_t to_string(const bitvector& bv, const char* separator = " ",  size_t block_size = 4, 
+	string_t to_string(const bitvector& bv, const char* separator = " ",  size_t block_size = 4,
 		const char* zero = "0", const char* unit = "1")
 	{
 		string_t result;

@@ -10,9 +10,9 @@ TestsDir := tests
 
 
 test_all: bitvector_test matrix_test
-	
 
-bitvector_test: 
+
+bitvector_test:
 	$(Compiler) $(Flags) $(TestsDir)/bitvector.cpp -o bitvector.test.bin
 	./bitvector.test.bin
 
@@ -30,5 +30,9 @@ finite_state:
 	$(Compiler) $(Flags) $(TestsDir)/finite_state_machine.cpp -o finite_state_machine.test.bin
 	./finite_state_machine.test.bin
 
-clear: 
+deterministic:
+	$(Compiler) $(Flags) $(TestsDir)/deterministic.cpp -o deterministic.test.bin
+	./deterministic.test.bin
+
+clear:
 	rm -rf *.o *.bin *.out
