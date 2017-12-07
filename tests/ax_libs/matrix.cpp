@@ -1,7 +1,8 @@
 #include <string>
 
-#include "../fs_machine/ax_libs/matrix.hpp"
-#include "main_test.hpp"
+#include "../../src/ax_libs.hpp"
+
+#include "../main_test.hpp"
 
 
 

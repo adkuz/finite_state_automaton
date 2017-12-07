@@ -1,10 +1,12 @@
+#pragma once
+
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include <vector>
 
 
-#include "ax_libs.hpp"
+#include "../ax_libs.hpp"
 #include "base_fs_machine.hpp"
 
 
@@ -12,7 +14,6 @@ namespace machines {
 
 	using symbol_t = base_finite_state_machine::symbol_index_t;
 	static const symbol_t lambda_symbol = -1;
-
 
 
 	class finite_state_machine
@@ -90,7 +91,7 @@ namespace machines {
 
 		bool has_lambda_transition( state_index_t state ) const
 		{
-			return _lambda_transition[state]
+			return _lambda_transition[state];
 		}
 
 	protected:

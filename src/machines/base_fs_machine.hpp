@@ -1,4 +1,6 @@
-#include "ax_libs.hpp"
+#pragma once
+
+#include "../ax_libs.hpp"
 
 
 namespace machines {

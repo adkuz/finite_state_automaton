@@ -1,9 +1,9 @@
 #include <unordered_set>
 #include <vector>
 
-#include "../fs_machine/base_fs_machine.hpp"
+#include "../../src/machines.hpp"
 
-#include "main_test.hpp"
+#include "../main_test.hpp"
 
 
 

@@ -2,10 +2,10 @@
 #include <unordered_map>
 #include <vector>
 
-#include "../fs_machine/ax_libs/matrix.hpp"
-#include "../fs_machine/determinism.hpp"
+#include "../../src/ax_libs.hpp"
+#include "../../src/machines.hpp"
 
-#include "main_test.hpp"
+#include "../main_test.hpp"
 
 
 

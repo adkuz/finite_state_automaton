@@ -3,8 +3,9 @@
 #include <set>
 #include <vector>
 
-#include "main_test.hpp"
-#include "../fs_machine/ax_libs.hpp"
+#include "../../src/ax_libs.hpp"
+
+#include "../main_test.hpp"
 
 
 template< class Container, class Value >
@@ -32,19 +33,19 @@ ax::bitvector make_bitvector( size_t length, const Container& container )
 }
 
 
-TEST_CASE( "Bitvector: low iq tests", "[ax::bitvector]" ) 
+TEST_CASE( "Bitvector: low iq tests", "[ax::bitvector]" )
 {
 	const size_t length = 14;
 	auto bitvector = ax::bitvector( length );
 
 	SECTION( "Testing constructors" )
-	{		
+	{
 		const std::set<size_t> bits_to_set = { 0, 1, 2, 3, 5, 8, 13, 21 };
 		ax::bitvector fib(23);
 
 		for( auto bit : bits_to_set )
 			fib.set( bit );
-		
+
 		INFO( "Copy fib to fib_copy by constructor" );
 			auto fib_copy = fib;
 		CAPTURE( ax::to_string( fib ) );
@@ -56,7 +57,7 @@ TEST_CASE( "Bitvector: low iq tests", "[ax::bitvector]" )
 		CAPTURE( ax::to_string( fib ) );
 		CAPTURE( ax::to_string( fib_copy ) );
 		REQUIRE( fib != fib_copy );
-		
+
 		INFO( "Copy new fib to fib_copy by operator=" );
 			fib_copy = fib;
 		CAPTURE( ax::to_string( fib ) );
@@ -78,14 +79,14 @@ TEST_CASE( "Bitvector: low iq tests", "[ax::bitvector]" )
 		REQUIRE( fib_copy == fib );
 	}
 
-	SECTION( "Testing set/reset" ) 
+	SECTION( "Testing set/reset" )
 	{
 		const std::set<size_t> bits_to_set = { 0, 1, 2, 3, 5, 8, 13 };
-		const std::set<size_t> bits_to_reset = { 1, 2, 4, 8 }; 
+		const std::set<size_t> bits_to_reset = { 1, 2, 4, 8 };
 		std::set<size_t> result_bits;
-		
+
 		std::set_difference(
-			bits_to_set.begin(), bits_to_set.end(), 
+			bits_to_set.begin(), bits_to_set.end(),
 			bits_to_reset.begin(), bits_to_reset.end(),
 			std::inserter( result_bits, result_bits.begin() )
 		);
@@ -102,7 +103,7 @@ TEST_CASE( "Bitvector: low iq tests", "[ax::bitvector]" )
 
 		for( auto bit : bits_to_reset )
 			bitvector.reset( bit );
-		
+
 		for( size_t i = 0; i < bitvector.length(); ++i ) {
 			auto bit_index = i;
 			CAPTURE( bit_index );
@@ -110,11 +111,11 @@ TEST_CASE( "Bitvector: low iq tests", "[ax::bitvector]" )
 			REQUIRE( bitvector[i] == characteristic_function( result_bits, i ) );
 		}
 	}
-		
+
 	SECTION( "Testing operator[]" )
     {
     	CAPTURE( ax::to_string( bitvector ) );
-    	
+
     	bitvector.set( 0 );
     	bitvector.set( 3 );
     	bitvector.set( 6 );
@@ -140,10 +141,10 @@ TEST_CASE( "Bitvector: low iq tests", "[ax::bitvector]" )
     	bitvector.set( 13 );
     	bitvector.reset( 0 );
     	REQUIRE( ax::to_string( bitvector, "..." , 5 ) == "00000...01000...0001" );
-    	REQUIRE( ax::to_string( bitvector, "," , 2 )   == "00,00,00,10,00,00,01" );    	
+    	REQUIRE( ax::to_string( bitvector, "," , 2 )   == "00,00,00,10,00,00,01" );
     }
 
-    SECTION( "Testing bool operator" ) 
+    SECTION( "Testing bool operator" )
     {
 		auto zero = ax::bitvector( length );
     	auto bits_7_9 = ax::bitvector( length );
@@ -176,26 +177,26 @@ TEST_CASE( "Bitvector: low iq tests", "[ax::bitvector]" )
     	const size_t size = 42;
 		const std::set<size_t> bitset1 = { 0, 1, 2, 3, 5, 8, 13, 21, 34 };
 		const std::set<size_t> bitset2 = { 1, 2, 4, 8, 16, 32 };
-		
+
 		std::vector<size_t> bits_union;
 		std::vector<size_t> bits_diff;
 		std::vector<size_t> bits_intersection;
- 
+
 		std::set_union(
-			bitset1.begin(), bitset1.end(), 
-			bitset2.begin(), bitset2.end(), 
+			bitset1.begin(), bitset1.end(),
+			bitset2.begin(), bitset2.end(),
 			std::back_inserter(bits_union)
 		);
 
 		std::set_symmetric_difference(
-        	bitset1.begin(), bitset1.end(), 
-			bitset2.begin(), bitset2.end(), 
+        	bitset1.begin(), bitset1.end(),
+			bitset2.begin(), bitset2.end(),
         	std::back_inserter(bits_diff)
         );
 
         std::set_intersection(
-        	bitset1.begin(), bitset1.end(), 
-			bitset2.begin(), bitset2.end(), 
+        	bitset1.begin(), bitset1.end(),
+			bitset2.begin(), bitset2.end(),
 			std::back_inserter(bits_intersection)
         );
 
@@ -222,5 +223,3 @@ TEST_CASE( "Bitvector: low iq tests", "[ax::bitvector]" )
 		REQUIRE( (vector1 ^ vector2) == vector_sum );
 	}
 }
-
-

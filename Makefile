@@ -3,36 +3,52 @@ CVersion := -std=c++17
 Flags    := $(CVersion) -Wall
 
 
-SrcDir := fs_machine
-AxLibDir := fs_machine/ax_libs
+SrcDir := src
+AxLibDir := $(SrcDir)/ax_libs
+MachinesDir := $(SrcDir)/machines
+AlgsDir := $(SrcDir)/algorithms
 
 TestsDir := tests
+AxLibsTestDir := $(TestsDir)/ax_libs
+MachinesTestDir := $(TestsDir)/machines
+AlgsTestDir := $(TestsDir)/algorithms
 
 
-test_all: bitvector_test matrix_test
+test_all: ax_libs_test
 
 
-bitvector_test:
-	$(Compiler) $(Flags) $(TestsDir)/bitvector.cpp -o bitvector.test.bin
-	./bitvector.test.bin
+ax_libs_test: _bitvector_test _matrix_test
 
-matrix_test:
-	$(Compiler) $(Flags) $(TestsDir)/matrix.cpp -o matrix.test.bin
-	./matrix.test.bin
 
+machines_test: base_fsm_test finite_state_machine_test deterministic
+
+
+#-------------------machines----------------------------------------------------
 base_fsm_test:
-	$(Compiler) $(Flags) $(TestsDir)/base_fsm.cpp -o base_fsm.test.bin
+	$(Compiler) $(Flags) $(MachinesTestDir)/base_fsm.cpp -o base_fsm.test.bin
 	./base_fsm.test.bin
 
-machines: finite_state
-
-finite_state:
-	$(Compiler) $(Flags) $(TestsDir)/finite_state_machine.cpp -o finite_state_machine.test.bin
+finite_state_machine_test:
+	$(Compiler) $(Flags) $(MachinesTestDir)/finite_state_machine.cpp -o \
+	 	finite_state_machine.test.bin
 	./finite_state_machine.test.bin
 
 deterministic:
-	$(Compiler) $(Flags) $(TestsDir)/deterministic.cpp -o deterministic.test.bin
+	$(Compiler) $(Flags) $(MachinesTestDir)/deterministic.cpp -o \
+		deterministic.test.bin
 	./deterministic.test.bin
+#------------------[machines]---------------------------------------------------
+
+
+#---------------ax_libs_test----------------------------------------------------
+_bitvector_test:
+	$(Compiler) $(Flags) $(AxLibsTestDir)/bitvector.cpp -o bitvector.test.bin
+	./bitvector.test.bin
+
+_matrix_test:
+	$(Compiler) $(Flags) $(AxLibsTestDir)/matrix.cpp -o matrix.test.bin
+	./matrix.test.bin
+#--------------[ax_libs_test]---------------------------------------------------
 
 clear:
 	rm -rf *.o *.bin *.out

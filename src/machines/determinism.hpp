@@ -1,9 +1,11 @@
+#pragma once
+
 #include <iostream>
 #include <iomanip>
 #include <string>
 
 
-#include "ax_libs.hpp"
+#include "../ax_libs.hpp"
 #include "base_fs_machine.hpp"
 
 
