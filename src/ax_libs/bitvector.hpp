@@ -3,12 +3,14 @@
 #include <algorithm>
 #include <cmath>
 #include <iostream>
+#include <string>
 #include <vector>
 
-#include "types.h"
 
 
 namespace ax {
+
+	using string_t = std::string;
 
 	class bitvector
 	{

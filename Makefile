@@ -40,6 +40,14 @@ deterministic:
 #------------------[machines]---------------------------------------------------
 
 
+#------------------algorithms---------------------------------------------------
+lambda_transition_deletion:
+	$(Compiler) $(Flags) $(AlgsTestDir)/lambda_transition_deletion.cpp -o \
+		lambda_transition_deletion.test.bin
+	./lambda_transition_deletion.test.bin
+#-----------------[algorithms]--------------------------------------------------
+
+
 #---------------ax_libs_test----------------------------------------------------
 _bitvector_test:
 	$(Compiler) $(Flags) $(AxLibsTestDir)/bitvector.cpp -o bitvector.test.bin

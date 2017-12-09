@@ -131,6 +131,18 @@ namespace ax {
 			);
 		}
 
+		friend bool operator== ( const matrix& lhs, const matrix& rhs )
+		{
+			_check_size_with_exception( lhs, rhs );
+
+			for( size_type r = 0; r < lhs.row_count(); ++r )
+				for( size_type c = 0; c < rhs.col_count(); ++c )
+					if( lhs(r,c) != rhs(r,c) )
+						return false;
+
+			return true;
+		}
+
 		size_type col_count() const
 		{
 			return _col_count;
