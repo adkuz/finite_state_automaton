@@ -39,7 +39,8 @@ namespace machines {
 			state_index_t next_state )
 		{
 			if( symbol == lambda_symbol ){
-				_lambda_transition[state].set( next_state );
+				if( state != next_state )
+					_lambda_transition[state].set( next_state );
 			}
 			else {
 				_transition_table( state, symbol ).set( next_state );
@@ -76,6 +77,25 @@ namespace machines {
 			}
 			else {
 				return _transition_table( state, symbol );
+			}
+		}
+
+		const lambda_transition_t& lambda_transitions() const
+		{
+			return this->_lambda_transition;
+		}
+
+		void set_transitions( state_index_t state, symbol_index_t symbol, const characteristic_vector& mask )
+		{
+			if( mask.length() != states_count() )
+				throw std::invalid_argument("set_tensition: mask length should be equal states_count()");
+
+			if( symbol == lambda_symbol ){
+				_lambda_transition[state] = mask;
+				_lambda_transition[state].reset( state );
+			}
+			else {
+				_transition_table( state, symbol ) = mask;
 			}
 		}
 
