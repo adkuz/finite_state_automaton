@@ -36,7 +36,7 @@ namespace machines {
 		void delete_rule( state_index_t state, symbol_index_t symbol,
 			state_index_t next_state )
 		{
-				_transition_table( state, symbol ).reset( next_state );
+			_transition_table( state, symbol ).reset( next_state );
 		}
 
 		void delete_all_rules( state_index_t state, symbol_index_t symbol )
@@ -56,6 +56,23 @@ namespace machines {
 				throw std::invalid_argument("set_tensition: mask length should be equal states_count()");
 
 			_transition_table( state, symbol ) = mask;
+		}
+
+		friend std::ostream& operator<<( std::ostream& ostr, const no_lamda_machine& m )
+		{
+			ostr << static_cast<const base_finite_state_machine&>( m ) << std::endl;
+
+			for( size_t state = 0; state < m.states_count(); ++ state ) {
+		        ostr << std::setw(3) << state << " : ";
+		        for( size_t symbol = 0; symbol < m.symbols_count(); ++symbol ) {
+		            ostr << "[ "
+		                 << ax::to_string(m._transition_table( state, symbol ), "", 4, "_", "1")
+		                 << " ] ";
+		        }
+				ostr << std::endl;
+			}
+
+			return ostr;
 		}
 
 	protected:

@@ -93,8 +93,34 @@ namespace machines {
 			return _lambda_transition[state];
 		}
 
+		friend std::ostream& operator<<( std::ostream& ostr, const finite_state_machine& m )
+		{
+			ostr << static_cast<const base_finite_state_machine&>( m ) << std::endl;
+
+			for( size_t state = 0; state < m.states_count(); ++ state ) {
+		        ostr << std::setw(3) << state << " : ";
+		        for( size_t symbol = 0; symbol < m.symbols_count(); ++symbol ) {
+		            ostr << "[ "
+		                 << ax::to_string(m.transitions( state, symbol ), "", 4, "_", "1")
+		                 << " ] ";
+		        }
+				ostr << "[ "
+					 << ax::to_string(m.lambda_transitions()[state], "", 4, "_", "1")
+					 << " ] ";
+				ostr << std::endl;
+			}
+
+			return ostr;
+		}
+
 	protected:
 		transition_table_t  _transition_table;
 		lambda_transition_t _lambda_transition;
 	};
+
+
+	finite_state_machine load_machine_from_file( const std::string& path )
+	{
+		
+	}
 }

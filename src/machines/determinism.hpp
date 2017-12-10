@@ -65,6 +65,24 @@ namespace machines {
             return is_final_state(state);
         }
 
+        friend std::ostream& operator<<( std::ostream& ostr, const deterministic_finite_state_machine& m )
+		{
+			ostr << static_cast<const base_finite_state_machine&>( m ) << std::endl;
+
+			for( size_t state = 0; state < m.states_count(); ++ state ) {
+		        ostr << std::setw(3) << state << " : ";
+		        for( size_t symbol = 0; symbol < m.symbols_count(); ++symbol ) {
+		            ostr << "[ "
+		                 << std::setw(3)
+                         << m.transition( state, symbol )
+		                 << " ] ";
+		        }
+				ostr << std::endl;
+			}
+
+			return ostr;
+		}
+
 	protected:
 		transition_table_t  _transition_table;
 	};
@@ -85,7 +103,7 @@ namespace machines {
             }
         }
 
-        return laplace_demon.finite_states();
+        return laplace_demon.final_states() && laplace_demon.start_state() != infinity_state;
     };
 }
 

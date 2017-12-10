@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <functional>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -23,9 +24,27 @@ namespace ax {
 
 		static const size_t byte_size = 8;
 
+		struct hasher
+		{
+			std::hash<byte_t> byte_hash;
+
+			hasher() : byte_hash() {}
+
+			std::size_t operator()( const bitvector& vector ) const
+			{
+				std::size_t hash = 0;
+				for( size_t i = 0; i < vector._byte_vector.size(); ++i ) {
+					hash ^= byte_hash( vector._byte_vector[i] );
+					//std::cout << i << "  " << hash << std::endl;
+				}
+				//std::cout << hash << std::endl;
+				return hash;
+			}
+		};
+
 	public:
-		bitvector( size_t size )
-			: _lenght( size )
+		explicit bitvector( size_t size )
+			: _length( size )
 			, _byte_vector( _bytes_count(size) )
 		{
 			for( auto& byte : _byte_vector )
@@ -40,23 +59,23 @@ namespace ax {
 		}
 
 		bitvector( const bitvector& obj )
-			: _lenght( obj._lenght )
+			: _length( obj._length )
 			, _byte_vector( obj._byte_vector )
 		{}
 
 		bitvector( bitvector&& obj )
-			: _lenght( obj._lenght )
+			: _length( obj._length )
 			, _byte_vector( std::move(obj._byte_vector) )
 		{
 			if( obj._byte_vector.empty() ) {
-				obj._lenght = 0;
+				obj._length = 0;
 			}
 		}
 
 		bitvector& operator= ( const bitvector& obj )
 		{
 			if( this != &obj ) {
-				this->_lenght = obj._lenght;
+				this->_length = obj._length;
 				this->_byte_vector = obj._byte_vector;
 			}
 			return *this;
@@ -65,11 +84,11 @@ namespace ax {
 		bitvector& operator= ( bitvector&& obj )
 		{
 			if( this != &obj ) {
-				this->_lenght = obj._lenght;
+				this->_length = obj._length;
 				this->_byte_vector = std::move( obj._byte_vector );
 
 				if( obj._byte_vector.empty() ) {
-					obj._lenght = 0;
+					obj._length = 0;
 				}
 			}
 			return *this;
@@ -77,11 +96,13 @@ namespace ax {
 
 		size_t length() const
 		{
-			return _lenght;
+			return _length;
 		}
 
 		bool operator[]( size_t index ) const
 		{
+			//std::cout << "[]: lenght: " << _length << "; index: " << index << std::endl;
+
 			_check_index( index );
 
 			auto [ byte_index, bit_index ] = _byte_and_bit_indexes( index );
@@ -91,6 +112,8 @@ namespace ax {
 
 		bool set( size_t index )
 		{
+			//std::cout << "set: lenght: " << _length << "; index: " << index << std::endl;
+
 			_check_index( index );
 
 			auto [ byte_index, bit_index ] = _byte_and_bit_indexes( index );
@@ -102,6 +125,8 @@ namespace ax {
 
 		bool reset( size_t index )
 		{
+			//std::cout << "reset: lenght: " << _length << "; index: " << index << std::endl;
+
 			_check_index( index );
 
 			auto [ byte_index, bit_index ] = _byte_and_bit_indexes( index );
@@ -198,19 +223,19 @@ namespace ax {
 		}
 
 	protected:
-		size_t _lenght;
+		size_t _length;
 		bits_t _byte_vector;
 
 		void _check_index( size_t index ) const
 		{
-			if( index >= _lenght ) {
+			if( index >= _length ) {
 				throw std::out_of_range("Index is not less than length!");
 			}
 		}
 
 		void _check_legth( size_t length )
 		{
-			if( length != this->_lenght ) {
+			if( length != this->_length ) {
 				throw std::invalid_argument("Lengths mismatch");
 			}
 		}
@@ -231,8 +256,15 @@ namespace ax {
 		}
 	};
 
-	string_t to_string(const bitvector& bv, const char* separator = " ",  size_t block_size = 4,
-		const char* zero = "0", const char* unit = "1")
+
+
+
+	string_t to_string(
+		const bitvector& bv,
+		const char* separator = " ",
+		size_t block_size = 4,
+		const char* zero = "0",
+	 	const char* unit = "1")
 	{
 		string_t result;
 		string_t sep = string_t(separator);

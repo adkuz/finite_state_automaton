@@ -45,6 +45,11 @@ lambda_transition_deletion:
 	$(Compiler) $(Flags) $(AlgsTestDir)/lambda_transition_deletion.cpp -o \
 		lambda_transition_deletion.test.bin
 	./lambda_transition_deletion.test.bin
+
+determinization:
+	$(Compiler) $(Flags) $(AlgsTestDir)/determinization.cpp -o \
+		determinization.test.bin
+	./determinization.test.bin
 #-----------------[algorithms]--------------------------------------------------
 
 

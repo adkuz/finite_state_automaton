@@ -1,3 +1,5 @@
+#pragma once
+
 #include <unordered_set>
 
 #include "../ax_libs.hpp"
@@ -10,12 +12,12 @@ namespace algs {
     template< typename T >
     using set = std::unordered_set<T>;
 
-    using machine_t = machines::finite_state_machine;
-    using state_t = machine_t::state_index_t;
-    using symbol_t = machine_t::symbol_index_t;
-    using lambda_transition_t = machine_t::lambda_transition_t;
+    using no_l_machine_t = machines::no_lamda_machine;
+    using state_t = no_l_machine_t::state_index_t;
+    using symbol_t = no_l_machine_t::symbol_index_t;
 
-    using no_l_machine_t = machines::finite_state_machine;
+    using machine_t = machines::finite_state_machine;
+    using lambda_transition_t = machine_t::lambda_transition_t;
 
     auto lambda = machines::lambda_symbol;
 
@@ -63,17 +65,30 @@ namespace algs {
         );
 
         auto lambda_tr = transitive_closure_of_lambda_transitions(machine);
+        auto final_states = machine.final_states();
 
-        for( state_t start = 0; start < machine.states_count(); ++start )
-            for( state_t end = 0; end < machine.states_count(); ++end ) {
-                if( lambda_tr[start][end] ) {
-                    for( symbol_t smbl = 0; smbl < machine.symbols_count(); ++smbl ) {
+
+        for( state_t start = 0; start < machine.states_count(); ++start ) {
+            for( symbol_t smbl = 0; smbl < machine.symbols_count(); ++smbl ) {
+
+                result_machine.set_transitions(start, smbl,
+                    machine.transitions(start, smbl)
+                );
+
+                for( state_t end = 0; end < machine.states_count(); ++end ) {
+                    if( lambda_tr[start][end] ) {
                         result_machine.set_transitions(start, smbl,
                             result_machine.transitions(start, smbl) | machine.transitions(end, smbl)
                         );
                     }
                 }
             }
+            if( lambda_tr[start] & machine.final_states() ) {
+                final_states.set(start);
+            }
+        }
+
+        result_machine.set_final_states( final_states );
 
         return result_machine;
     }
