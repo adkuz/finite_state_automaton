@@ -1,5 +1,7 @@
+#pragma once
+
 #include <fstream>
-#include <filesystem>
+//#include <filesystem> //Серьезно? до сих пор нет?
 
 #include "fs_machine.hpp"
 
@@ -11,6 +13,8 @@ namespace ax {
     auto load_machine_from_file( const std::string& path )
         -> machines::finite_state_machine
 	{
+        using size_t = machines::finite_state_machine::state_index_t;
+
 		auto filestream = std::ifstream(path);
 
         size_t states_count = 0;
@@ -24,8 +28,48 @@ namespace ax {
             throw load_exception_t( "Symbols count error" );
         }
 
-        size_t state = 0;
-        size_t next =
+        size_t start_state = -1;
 
+        if( !(filestream >> start_state) ) {
+            throw load_exception_t( "Start state error" );
+        }
+
+        auto machine = machines::finite_state_machine(states_count, symbols_count);
+
+        size_t final_count = 0;
+        if( !(filestream >> final_count || final_count == 0) ) {
+            throw load_exception_t( "Final states count error" );
+        }
+
+        for( size_t i = 0; i < final_count; ++i ) {
+            size_t final_state = -1;
+            if( !(filestream >> final_state) ) {
+                throw load_exception_t( "Final state error" );
+            }
+            machine.set_final_state(final_state);
+        }
+
+        size_t lambda = -1;
+        if( !(filestream >> lambda || lambda < symbols_count) ) {
+            throw load_exception_t( "Lambda error" );
+        }
+
+        size_t state = -1;
+        size_t next = -1;
+        size_t symbol = -1;
+
+        try{
+            while( filestream >> state && filestream >> symbol && filestream >> next ) {
+                if( symbol == lambda) {
+                    symbol = machines::lambda_symbol;
+                }
+                machine.add_rule(state, symbol, next);
+            }
+        }
+        catch(...){
+            throw load_exception_t( "Rules error" );
+        }
+
+        return machine;
 	}
 }

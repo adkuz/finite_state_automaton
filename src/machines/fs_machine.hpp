@@ -117,10 +117,4 @@ namespace machines {
 		transition_table_t  _transition_table;
 		lambda_transition_t _lambda_transition;
 	};
-
-
-	finite_state_machine load_machine_from_file( const std::string& path )
-	{
-		
-	}
 }

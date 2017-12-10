@@ -14,6 +14,9 @@ MachinesTestDir := $(BuildTestsDir)/machines
 AlgsTestDir := $(BuildTestsDir)/algorithms
 
 
+all: main
+
+
 test_all: ax_libs_test
 
 
@@ -21,6 +24,11 @@ ax_libs_test: _bitvector_test _matrix_test
 
 
 machines_test: base_fsm_test finite_state_machine_test deterministic
+
+#-------------------main--------------------------------------------------------
+main:
+	$(Compiler) $(Flags) ./main.cpp -o main.bin
+#------------------[main]-------------------------------------------------------
 
 
 #-------------------machines----------------------------------------------------
