@@ -7,7 +7,7 @@
 
 
 #include "../ax_libs.hpp"
-#include "base_fs_machine.hpp"
+#include "no_lamda_machine.hpp"
 
 
 namespace machines {
@@ -17,19 +17,14 @@ namespace machines {
 
 
 	class finite_state_machine
-		: public base_finite_state_machine
+		: public no_lamda_machine
 	{
 	public:
-		using characteristic_vector = ax::bitvector;
-		using transition_table_t = ax::matrix<characteristic_vector>;
 		using lambda_transition_t = std::vector<characteristic_vector>;
 
 	public:
 		finite_state_machine(  size_t states_count, size_t symbols_count )
-			: base_finite_state_machine( states_count, symbols_count )
-			, _transition_table( states_count, symbols_count,
-				characteristic_vector( states_count )
-			)
+			: no_lamda_machine( states_count, symbols_count )
 			,_lambda_transition( states_count,
 				characteristic_vector( states_count )
 			)
@@ -43,7 +38,7 @@ namespace machines {
 					_lambda_transition[state].set( next_state );
 			}
 			else {
-				_transition_table( state, symbol ).set( next_state );
+				no_lamda_machine::add_rule( state, symbol, next_state );
 			}
 		}
 
@@ -54,7 +49,7 @@ namespace machines {
 				_lambda_transition[state].reset( next_state );
 			}
 			else {
-				_transition_table( state, symbol ).reset( next_state );
+				no_lamda_machine::delete_rule( state, symbol, next_state );
 			}
 		}
 
@@ -65,18 +60,7 @@ namespace machines {
 					std::move( characteristic_vector(_states_count) );
 			}
 			else {
-				_transition_table( state, symbol ) =
-					std::move( characteristic_vector(_states_count) );
-			}
-		}
-
-		const characteristic_vector& transitions( state_index_t state, symbol_index_t symbol ) const
-		{
-			if( symbol == lambda_symbol ){
-				return _lambda_transition[state];
-			}
-			else {
-				return _transition_table( state, symbol );
+				no_lamda_machine::delete_all_rules( state, symbol );
 			}
 		}
 
@@ -85,18 +69,13 @@ namespace machines {
 			return this->_lambda_transition;
 		}
 
-		void set_transitions( state_index_t state, symbol_index_t symbol, const characteristic_vector& mask )
+		const lambda_transition_t& set_lambda_transitions( const lambda_transition_t& lt )
 		{
-			if( mask.length() != states_count() )
+			if( lt.size() != states_count() || lt[0].length() != states_count() )
 				throw std::invalid_argument("set_tensition: mask length should be equal states_count()");
 
-			if( symbol == lambda_symbol ){
-				_lambda_transition[state] = mask;
-				_lambda_transition[state].reset( state );
-			}
-			else {
-				_transition_table( state, symbol ) = mask;
-			}
+			this->_lambda_transition = lt;
+			return this->lambda_transitions();
 		}
 
 		size_t states_count() const

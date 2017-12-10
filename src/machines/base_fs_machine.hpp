@@ -25,7 +25,7 @@ namespace machines {
 			, _final_states( states_count )
 		{}
 
-		bool add_final_state( state_index_t state_index )
+		bool set_final_state( state_index_t state_index )
 		{
 			if( _is_valid_state( state_index ) ) {
 				_final_states.set( state_index );
@@ -34,7 +34,7 @@ namespace machines {
 			return false;
 		}
 
-		bool delete_final_state( state_index_t state_index )
+		bool uset_final_state( state_index_t state_index )
 		{
 			if( _is_valid_state( state_index ) ) {
 				_final_states.reset( state_index );
@@ -50,7 +50,19 @@ namespace machines {
 			bool is_all_right = true;
 
 			for( auto it = begin; it != end; it = std::next(it) ) {
-				is_all_right = is_all_right && add_final_state( *it );
+				is_all_right = is_all_right && set_final_state( *it );
+			}
+			return is_all_right;
+		}
+
+		template<class It>
+		bool unset_final_states( It begin, It end )
+		{
+			_final_states = final_states_t( _states_count );
+			bool is_all_right = true;
+
+			for( auto it = begin; it != end; it = std::next(it) ) {
+				is_all_right = is_all_right && unset_final_state( *it );
 			}
 			return is_all_right;
 		}
@@ -69,7 +81,7 @@ namespace machines {
 			return false;
 		}
 
-		state_index_t get_start_state() const
+		state_index_t start_state() const
 		{
 			return _start_state;
 		}

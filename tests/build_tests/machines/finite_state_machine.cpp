@@ -2,10 +2,10 @@
 #include <unordered_map>
 #include <vector>
 
-#include "../../src/ax_libs.hpp"
-#include "../../src/machines.hpp"
+#include "../../../src/ax_libs.hpp"
+#include "../../../src/machines.hpp"
 
-#include "../main_test.hpp"
+#include "../../main_test.hpp"
 
 
 

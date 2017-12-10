@@ -8,10 +8,10 @@ AxLibDir := $(SrcDir)/ax_libs
 MachinesDir := $(SrcDir)/machines
 AlgsDir := $(SrcDir)/algorithms
 
-TestsDir := tests
-AxLibsTestDir := $(TestsDir)/ax_libs
-MachinesTestDir := $(TestsDir)/machines
-AlgsTestDir := $(TestsDir)/algorithms
+BuildTestsDir := tests/build_tests
+AxLibsTestDir := $(BuildTestsDir)/ax_libs
+MachinesTestDir := $(BuildTestsDir)/machines
+AlgsTestDir := $(BuildTestsDir)/algorithms
 
 
 test_all: ax_libs_test
