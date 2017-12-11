@@ -91,36 +91,35 @@ namespace algs {
         auto start_state = default_hyper_state();
         auto final_states = machine.final_states();
 
+        //std::cout << "ooo  " << machine.start_state() << std::endl;
+
         start_state.set( machine.start_state() );
         add_applicant( start_state );
 
         while( ! is_all_determinated() ) {
             auto hyper_state = get_applicant();
 
-            std::cout << "hyper = "
-                << ax::to_string( hyper_state ) << std::endl;
+            /*std::cout << "hyper = "
+                << ax::to_string( hyper_state ) << std::endl;*/
 
             auto state_index = add_to_determinated(hyper_state);
 
             for( symbol_t symbol = 0; symbol < symbols_count; ++symbol ) {
-                for( symbol_t symbol = 0; symbol < symbols_count; ++symbol ) {
 
-                    auto applicant = default_hyper_state();
-                    for( state_t state = 0; state < states_count; ++state ) {
-                        if( hyper_state[state] ) {
-                                applicant |= machine.transitions(state, symbol);
-                        }
+                auto applicant = default_hyper_state();
+                for( state_t state = 0; state < states_count; ++state ) {
+                    if( hyper_state[state] ) {
+                            applicant |= machine.transitions(state, symbol);
                     }
-
-                    if( ! is_determinated(applicant) )
-                        add_applicant( applicant );
-
-                    std::cout << "  + " << state_index << " x " << symbol << " -> "
-                        << ax::to_string( applicant ) << std::endl;
-
-                    add_rule(state_index, symbol, applicant);
                 }
 
+                if( ! is_determinated(applicant) )
+                    add_applicant( applicant );
+
+                /*std::cout << "  + " << state_index << " x " << symbol << " -> "
+                    << ax::to_string( applicant ) << std::endl;*/
+
+                add_rule( state_index, symbol, applicant );
             }
         }
 

@@ -115,6 +115,8 @@ namespace machines {
 				 << m.states_count() - 1
 				 << ", symbols: 0.."
 				 << m.symbols_count() - 1
+				 << ", start: "
+				 << m.start_state()
 				 << ", final states mask = "
 				 << ax::to_string( m.final_states() )
 				 << " ]";

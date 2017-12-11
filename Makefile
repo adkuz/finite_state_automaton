@@ -8,16 +8,21 @@ AxLibDir := $(SrcDir)/ax_libs
 MachinesDir := $(SrcDir)/machines
 AlgsDir := $(SrcDir)/algorithms
 
-BuildTestsDir := tests/build_tests
+
+TestDir := tests
+
+BuildTestsDir := $(TestDir)/build_tests
 AxLibsTestDir := $(BuildTestsDir)/ax_libs
 MachinesTestDir := $(BuildTestsDir)/machines
 AlgsTestDir := $(BuildTestsDir)/algorithms
+
+FullTestsDir := $(TestDir)/full_tests
 
 
 all: main
 
 
-test_all: ax_libs_test
+test_all: ax_libs_test machines_test
 
 
 ax_libs_test: _bitvector_test _matrix_test
@@ -29,6 +34,13 @@ machines_test: base_fsm_test finite_state_machine_test deterministic
 main:
 	$(Compiler) $(Flags) ./main.cpp -o main.bin
 #------------------[main]-------------------------------------------------------
+
+#-------------------main--------------------------------------------------------
+full_tests:
+	$(Compiler) $(Flags) $(FullTestsDir)/full.cpp -o full.test.bin
+	./full.test.bin
+#------------------[main]-------------------------------------------------------
+
 
 
 #-------------------machines----------------------------------------------------

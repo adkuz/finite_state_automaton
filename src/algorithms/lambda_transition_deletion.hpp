@@ -89,6 +89,8 @@ namespace algs {
         }
 
         result_machine.set_final_states( final_states );
+        result_machine.set_start_state( machine.start_state() );
+
 
         return result_machine;
     }

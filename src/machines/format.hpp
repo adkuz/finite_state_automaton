@@ -17,8 +17,13 @@ namespace ax {
 
 		auto filestream = std::ifstream(path);
 
-        size_t states_count = 0;
-        size_t symbols_count = 0;
+        if( ! filestream.is_open() ){
+            throw load_exception_t( "File opening error" );
+
+        }
+
+        size_t states_count = -1;
+        size_t symbols_count = -1;
 
         if( !(filestream >> states_count) ) {
             throw load_exception_t( "States count error" );
@@ -36,6 +41,8 @@ namespace ax {
 
         auto machine = machines::finite_state_machine(states_count, symbols_count);
 
+        machine.set_start_state( start_state );
+        
         size_t final_count = 0;
         if( !(filestream >> final_count || final_count == 0) ) {
             throw load_exception_t( "Final states count error" );
