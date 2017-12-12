@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <tuple>
 #include <regex>
 
 #include "../../src/machines.hpp"
@@ -11,9 +12,9 @@
 
 static const std::map<std::string, std::string>
     re_to_files = {
-        { "(1|2)(00)+((11)+|2)", "tests/full_tests/machines/001.fsa" },
-        //{ "(1|2)(00)+((11)+|2)", "tests/full_tests/machines/002.fsa" },
-
+        { "tests/full_tests/machines/001.fsa", "(1|2)(00)+((11)+|2)" },
+        { "tests/full_tests/machines/002.fsa", "(000(00)*|010|0|1(00)*)" },
+        { "tests/full_tests/machines/003.fsa", "(00|1)*" },
     };
 
 TEST_CASE( "Testing like a god" )
@@ -40,10 +41,10 @@ TEST_CASE( "Testing like a god" )
 
     for( auto it = std::begin(re_to_files); it != std::end(re_to_files); ++it ) {
         auto section_name = std::string("Regexp = ");
-        section_name += "\'" + it->first + "\'  file = " + it->second;
+        section_name += "\'" + it->second + "\'  file = " + it->first;
 
-        auto filename = it->second;
-        auto regexp = std::regex( it->first );
+        auto filename = it->first;
+        auto regexp = std::regex( it->second );
 
         SECTION( section_name )
         {
@@ -55,7 +56,7 @@ TEST_CASE( "Testing like a god" )
                 auto good_counter = size_t( 0 );
 
                 for( auto i = seq_number; i > 0; --i ) {
-                    auto sequence = generate_sequence( std::rand() % 10 + 1, 3 );
+                    auto sequence = generate_sequence( std::rand() % 10 + 1, machine.symbols_count() );
                     bool machine_result = heptapod( sequence );
                     bool regexp_result = std::regex_match( to_string(sequence), regexp );
 
@@ -67,6 +68,7 @@ TEST_CASE( "Testing like a god" )
                     CAPTURE( no_e_machine );
                     CAPTURE( heptapod );
                     CAPTURE( section_name );
+                    CAPTURE( to_string(sequence) );
 
                     REQUIRE( machine_result == regexp_result );
                 }
