@@ -12,7 +12,7 @@
 
 Конечный автомат A это кортеж вида
 
-<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi><mo>&#xA0;</mo><mo>=</mo><mo>&#xA0;</mo><mo>(</mo><mo>&#xA0;</mo><mi>V</mi><mo>,</mo><mo>&#xA0;</mo><mi>Q</mi><mo>,</mo><mo>&#xA0;</mo><msub><mi>q</mi><mn>0</mn></msub><mo>,</mo><mo>&#xA0;</mo><mi>F</mi><mo>,</mo><mo>&#xA0;</mo><mi>&#x3B4;</mi><mo>&#xA0;</mo><mo>)</mo></math>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi><mo>&#xA0;</mo><mo>=</mo><mo>&#xA0;</mo><mo>(</mo><mo>&#xA0;</mo><mi>V</mi><mo>,</mo><mo>&#xA0;</mo><mi>Q</mi><mo>,</mo><mo>&#xA0;</mo><msub><mi>q</mi><mn><sub>0</sub></mn></msub><mo>,</mo><mo>&#xA0;</mo><mi>F</mi><mo>,</mo><mo>&#xA0;</mo><mi>&#x3B4;</mi><mo>&#xA0;</mo><mo>)</mo></math>
 
 `(V, Q, q0, F, t)`, 
 где `V = {a1, a2, ..., an}` - множество входных символов (входной алфавит), `Q = {q0, q1, ..., qs}` - множество состояний автомата (а в представлении автомата в виде графа, размеченным над V, мэто множество вершин этого графа), `q0` - начальное состояние автомата (q0 in Q /перевести в LATex/), `F` - множество выходных состояний автомата (F - подмножество Q), `t` - функция переходов, то есть `t: QxV -> 2^Q`. При этом, если множество состояний `Q` конечно, то и автомат называют конечным.
