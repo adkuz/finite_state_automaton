@@ -8,24 +8,28 @@
 * [Иструкция по пользованию программой](#Иструкция-по-пользованию-программой)
 http://www.wiris.com/editor/demo/ru/mathml-latex
 
-<html>
-<head>
-<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
-<script type="text/javascript">
-LatexIT.add('p',true);
-</script>
-</head>
-<body>
-<p>Dividing $x^2+1$ by $y^2$ gives \[\frac{x^2+1}{y^2}\]</p>
-<p>The british pound is worth 1.5 US\$ or $1.1 \euro$</p>
-</body>
-</html>
+A = ( V, Q, q_{0}, F, \delta )
+
 
 ### Теоретическая часть
 
 Конечный автомат M это кортеж вида
 
-<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>M</mi><mo>&#xA0;</mo><mo>=</mo><mo>&#xA0;</mo><mo>(</mo><mo>&#xA0;</mo><mi>A</mi><mo>,</mo><mo>&#xA0;</mo><mi>Q</mi><mo>,</mo><mo>&#xA0;</mo><msub><mi>q</mi><mn><sub>0</sub></mn></msub><mo>,</mo><mo>&#xA0;</mo><mi>F</mi><mo>,</mo><mo>&#xA0;</mo><mi>&#x3B4;</mi><mo>&#xA0;</mo><mo>)</mo></math>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mi>M</mi>
+  <mo>&#xA0;</mo>
+  <mo>=</mo>
+  <mo>&#xA0;</mo>
+  <mo>(</mo>
+  <mo>&#xA0;</mo>
+  <mi>A</mi>
+  <mo>,</mo>
+  <mo>&#xA0;</mo>
+  <mi>Q</mi>
+  <mo>,</mo>
+  <mo>&#xA0;</mo>
+  <msub><mi>q</mi><mn><sub>0</sub></mn></msub>
+  <mo>,</mo><mo>&#xA0;</mo><mi>F</mi><mo>,</mo><mo>&#xA0;</mo><mi>&#x3B4;</mi><mo>&#xA0;</mo><mo>)</mo></math>
 
 где <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi><mo>&#xA0;</mo><mo>=</mo><mo>&#xA0;</mo><mo>{</mo><mo>&#xA0;</mo><msub><mi>a</mi><mn><sub>0</sub></mn></msub><mo>,</mo><mo>&#xA0;</mo><msub><mi>a</mi><mn><sub>1</sub></mn></msub><mo>,</mo><mo>&#xA0;</mo><mo>.</mo><mo>.</mo><mo>.</mo><mo>&#xA0;</mo><mo>,</mo><mo>&#xA0;</mo><msub><mi>a</mi><mi><sub>n-1</sub></mi></msub><mo>&#xA0;</mo><mo>}</mo><mspace linebreak="newline"/></math> - множество входных символов (входной алфавит), <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>Q</mi><mo>&#xA0;</mo><mo>=</mo><mo>&#xA0;</mo><mo>{</mo><mo>&#xA0;</mo><msub><mi>q</mi><mn><sub>0</sub></mn></msub><mo>,</mo><mo>&#xA0;</mo><msub><mi>q</mi><mn><sub>1</sub></mn></msub><mo>,</mo><mo>&#xA0;</mo><mo>.</mo><mo>.</mo><mo>.</mo><mo>,</mo><mo>&#xA0;</mo><msub><mi>q</mi><mi><sub>m-1</sub></mi></msub><mo>&#xA0;</mo><mo>}</mo></math> - множество состояний автомата, `q0` - начальное состояние автомата (<math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>q</mi><mn>0</mn></msub><mo>&#x2208;</mo><mi>Q</mi></math>), `F` - множество выходных состояний автомата (F - подмножество Q), `t` - функция переходов, то есть `t: QxV -> 2^Q`. При этом, если множество состояний `Q` конечно, то и автомат называют конечным.
 Автомат называется детерминированным, если для лбого входного символа `ai` и любого состояния `qj` функция `t(ai, qj)` 'ведет' ровно в одну вершину, то есть `|t(ai, qj)| = 1`. Это свойство автомата (детерминированность) дает возможность реализовать его алгоритмом однозначно.
