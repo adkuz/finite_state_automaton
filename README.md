@@ -8,6 +8,19 @@
 * [Иструкция по пользованию программой](#Иструкция-по-пользованию-программой)
 http://www.wiris.com/editor/demo/ru/mathml-latex
 
+<html>
+<head>
+<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+<script type="text/javascript">
+LatexIT.add('p',true);
+</script>
+</head>
+<body>
+<p>Dividing $x^2+1$ by $y^2$ gives \[\frac{x^2+1}{y^2}\]</p>
+<p>The british pound is worth 1.5 US\$ or $1.1 \euro$</p>
+</body>
+</html>
+
 ### Теоретическая часть
 
 Конечный автомат M это кортеж вида
