@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=latex 2017.12.24)  28 DEC 2017 01:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=latex 2017.12.24)  28 DEC 2017 02:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -23,6 +23,16 @@ File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
+(/usr/share/texlive/texmf-dist/tex/latex/extsizes/extsizes.sty
+Package: extsizes 1996/10/08 v1.0 Non Standard LaTeX Package
+
+
+Package ExtSizes Warning: It is better to use one of the extsizes classes,
+ if you can.
+
+(/usr/share/texlive/texmf-dist/tex/latex/extsizes/size14.clo
+File: size14.clo 1999/11/11 v1.4a NON-Standard LaTeX file (size option)
+))
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/ucs.sty
 Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
 
@@ -134,61 +144,92 @@ Package: titletoc 2011/12/15 v1.6 TOC entries
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
 
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
-) (./report.toc)
+) (./report.toc
+[1
+
+])
 \tf@toc=\write3
 \openout3 = `report.toc'.
 
 
-Overfull \hbox (15.53302pt too wide) in paragraph at lines 30--31
-\T2A/cmr/m/n/12 Ниже приводятся определения и утверждения, которые будут исполь
-зованы
+Overfull \hbox (43.19452pt too wide) in paragraph at lines 33--34
+\T2A/cmr/m/n/14.4 Ниже приводятся определения и утверждения, которые будут испо
+льзованы
  []
 
-[1
 
-]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 38.
- (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+Overfull \hbox (1.77135pt too wide) in paragraph at lines 33--34
+\T2A/cmr/m/n/14.4 для дальнейших пояснений к реализации алгоритма детерминизаци
+и. 
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 41.
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 38.
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <14.4> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 41.
 
-Overfull \hbox (0.9201pt too wide) in paragraph at lines 44--45
-\T2A/cmr/m/n/12 алфавит дополняется фиктивным символом $\OML/cmm/m/it/12 ^^U$ \
-T2A/cmr/m/n/12 (в иностранной литературе
+Overfull \hbox (22.57225pt too wide) in paragraph at lines 41--42
+[]$\OML/cmm/m/it/14.4 A \OT1/cmr/m/n/14.4 = \OMS/cmsy/m/n/14.4 f\OML/cmm/m/it/1
+4.4 a[]; a[]; [] ; a[]\OMS/cmsy/m/n/14.4 g$ \T2A/cmr/m/n/14.4 --- входной алфав
+ит, т.е. множество символов,
+ []
+
+
+Overfull \hbox (1.4894pt too wide) in paragraph at lines 47--48
+\T2A/cmr/m/n/14.4 Если в автомате разрешены переходы по пустому символу, то вхо
+дной
+ []
+
+
+Overfull \hbox (26.37125pt too wide) in paragraph at lines 47--48
+\T2A/cmr/m/n/14.4 алфавит дополняется фиктивным символом $\OML/cmm/m/it/14.4 ^^
+U$ \T2A/cmr/m/n/14.4 (в иностранной литературе
  []
 
 [2]
-Overfull \hbox (52.3622pt too wide) in paragraph at lines 68--68
-[]\T2A/cmr/bx/n/17.28 Реализация алгоритма детерминизации автомата 
+Overfull \hbox (3.1412pt too wide) in paragraph at lines 52--54
+\T2A/cmr/m/n/14.4 т.е. из любого состояния по любой букве возможен переход в то
+чности
  []
 
-[3] [4] (./report.aux) ) 
+
+Overfull \hbox (1.21793pt too wide) in paragraph at lines 55--56
+\T2A/cmr/m/n/14.4 является элементом полукольца регулярных языков $\OML/cmm/m/i
+t/14.4 R\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 A\OT1/cmr/m/n/14.4 )$ \T2A/cmr/m/
+n/14.4 в алфавите
+ []
+
+[3]
+Overfull \vbox (62.05885pt too high) has occurred while \output is active []
+
+
+[4] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 1978 strings out of 493030
- 24501 string characters out of 6136259
- 182750 words of memory out of 5000000
- 5521 multiletter control sequences out of 15000+600000
- 14198 words of font info for 39 fonts, out of 8000000 for 9000
+ 2003 strings out of 493030
+ 26820 string characters out of 6136259
+ 184049 words of memory out of 5000000
+ 5545 multiletter control sequences out of 15000+600000
+ 13071 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  27i,6n,20p,633b,189s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on report.dvi (4 pages, 10908 bytes).
+Output written on report.dvi (4 pages, 10608 bytes).
