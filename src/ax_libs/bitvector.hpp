@@ -112,8 +112,6 @@ namespace ax {
 
 		bool set( size_t index )
 		{
-			//std::cout << "set: lenght: " << _length << "; index: " << index << std::endl;
-
 			_check_index( index );
 
 			auto [ byte_index, bit_index ] = _byte_and_bit_indexes( index );
@@ -125,8 +123,6 @@ namespace ax {
 
 		bool reset( size_t index )
 		{
-			//std::cout << "reset: lenght: " << _length << "; index: " << index << std::endl;
-
 			_check_index( index );
 
 			auto [ byte_index, bit_index ] = _byte_and_bit_indexes( index );

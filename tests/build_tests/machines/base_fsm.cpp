@@ -21,7 +21,7 @@ TEST_CASE( "Test base_finite_state_machine: get-methods" )
 	REQUIRE( machine.symbols_count() == 17 );
 
 	INFO( "Default start state index is 0" );
-	REQUIRE( machine.get_start_state() == 0);
+	REQUIRE( machine.start_state() == 0);
 
 }
 
@@ -42,7 +42,7 @@ TEST_CASE( "Test base_finite_state_machine: final states" )
 		});
 
 		for( auto state_index : final_states_set ) {
-			machine.add_final_state( state_index );
+			machine.set_final_state( state_index );
 		}
 
 		REQUIRE( machine.is_final_state( 2 ) == true );
@@ -52,7 +52,7 @@ TEST_CASE( "Test base_finite_state_machine: final states" )
 		REQUIRE( machine.is_final_state( 5 ) == false );
 
 		for( auto state_index : not_final_states_set ) {
-			machine.delete_final_state( state_index );
+			machine.unset_final_state( state_index );
 		}
 
 		REQUIRE( machine.is_final_state( 7 ) == true );

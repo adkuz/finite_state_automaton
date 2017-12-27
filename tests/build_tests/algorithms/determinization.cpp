@@ -65,9 +65,9 @@ TEST_CASE( "determinization" )
 
         auto heptapod = algs::determinization( no_e_machine );
 
-        std::cout << machine << std::endl;
-        std::cout << no_e_machine << std::endl;
-        std::cout << heptapod << std::endl;
+        //std::cout << machine << std::endl;
+        //std::cout << no_e_machine << std::endl;
+        //std::cout << heptapod << std::endl;
 
 
         REQUIRE( heptapod.symbols_count() == 2 );

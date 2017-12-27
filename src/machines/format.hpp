@@ -42,7 +42,7 @@ namespace ax {
         auto machine = machines::finite_state_machine(states_count, symbols_count);
 
         machine.set_start_state( start_state );
-        
+
         size_t final_count = 0;
         if( !(filestream >> final_count || final_count == 0) ) {
             throw load_exception_t( "Final states count error" );

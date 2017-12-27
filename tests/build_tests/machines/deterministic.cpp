@@ -27,8 +27,8 @@ TEST_CASE( "Testing finite state machine (FSM)" )
     megatron.add_rule( 2, 1, 2 );
     megatron.add_rule( 2, 2, 2 );
 
-    megatron.add_final_state( 0 );
-    megatron.add_final_state( 1 );
+    megatron.set_final_state( 0 );
+    megatron.set_final_state( 1 );
 
     megatron.set_start_state( 0 );
 

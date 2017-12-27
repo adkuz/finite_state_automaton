@@ -15,7 +15,6 @@ TEST_CASE( "Testing finite state machine (FSM)" )
 
 	machine_t megatron( 13, 7 );
 
-
 	SECTION( "Adding rules" )
 	{
 		auto rules = std::vector<std::vector<size_t>>( 5 );

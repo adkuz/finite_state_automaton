@@ -20,7 +20,8 @@ static const std::map<std::string, std::string>
 TEST_CASE( "Testing like a god" )
 {
     std::srand( 42 );
-    auto seq_number = 100'000;
+    auto seq_number = 100'000; //cool!!!
+    auto max_seq_length = 20;
 
     using sequence_t = std::vector<size_t>;
     auto generate_sequence = []( size_t n, size_t k )
@@ -56,7 +57,10 @@ TEST_CASE( "Testing like a god" )
                 auto good_counter = size_t( 0 );
 
                 for( auto i = seq_number; i > 0; --i ) {
-                    auto sequence = generate_sequence( std::rand() % 10 + 1, machine.symbols_count() );
+                    auto sequence = generate_sequence(
+                        std::rand() % max_seq_length + 1,
+                        machine.symbols_count()
+                    );
                     bool machine_result = heptapod( sequence );
                     bool regexp_result = std::regex_match( to_string(sequence), regexp );
 

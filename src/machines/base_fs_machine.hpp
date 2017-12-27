@@ -34,7 +34,7 @@ namespace machines {
 			return false;
 		}
 
-		bool uset_final_state( state_index_t state_index )
+		bool unset_final_state( state_index_t state_index )
 		{
 			if( _is_valid_state( state_index ) ) {
 				_final_states.reset( state_index );
@@ -72,6 +72,7 @@ namespace machines {
 			for( auto it = begin; it != end; it = std::next(it) ) {
 				is_all_right = is_all_right && unset_final_state( *it );
 			}
+
 			return is_all_right;
 		}
 

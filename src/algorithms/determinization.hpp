@@ -32,8 +32,6 @@ namespace algs {
     auto determinization( const no_l_machine_t& machine )
         -> automaton_t
     {
-
-
         using hyper_state_t = no_l_machine_t::characteristic_vector;
         using applicants_states_t = std::unordered_set<hyper_state_t, hyper_state_t::hasher>;
         using det_states_t = std::unordered_map<hyper_state_t, state_t, hyper_state_t::hasher>;
