@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=latex 2017.12.24)  28 DEC 2017 06:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=latex 2017.12.24)  28 DEC 2017 14:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -250,109 +250,145 @@ Overfull \hbox (3.9594pt too wide) in paragraph at lines 78--79
 $\T2A/cmr/m/n/12 , в котором гиперсостояние
  []
 
-[3] [4]
-Overfull \hbox (20.80646pt too wide) in paragraph at lines 106--107
+[3]
+Overfull \hbox (15.85791pt too wide) in paragraph at lines 82--83
+\OT1/cmr/m/n/12 2[]$ \T2A/cmr/m/n/12 инъективным отношением, поэтому в новом КД
+А необходимо определить
+ []
+
+[4]
+Overfull \hbox (20.80646pt too wide) in paragraph at lines 114--115
 [] []$\OML/cmm/m/it/12 s[] \OT1/cmr/m/n/12 := \OMS/cmsy/m/n/12 f\OML/cmm/m/it/1
 2 q[]\OMS/cmsy/m/n/12 g$  \T2A/cmr/m/n/12 // \T2A/cmr/m/sl/12 Входное гиперсост
 ояние соответсвует входному состоянию
  []
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 107.
+LaTeX Warning: Command \O invalid in math mode on input line 115.
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 107.
+LaTeX Warning: Command \O invalid in math mode on input line 115.
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 108.
+LaTeX Warning: Command \O invalid in math mode on input line 116.
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 108.
+LaTeX Warning: Command \O invalid in math mode on input line 116.
 
 
-Overfull \hbox (4.81625pt too wide) in paragraph at lines 108--109
+Overfull \hbox (4.81625pt too wide) in paragraph at lines 116--117
 [] []$\OML/cmm/m/it/12 DET \OT1/cmr/m/n/12 = ^^_$  \T2A/cmr/m/n/12 // \T2A/cmr/
 m/sl/12 Множество уже детерминизированных гиперсостояний 
  []
 
 
-Overfull \hbox (59.36139pt too wide) in paragraph at lines 109--110
+Overfull \hbox (59.36139pt too wide) in paragraph at lines 117--118
 [] []$\OML/cmm/m/it/12 NONDET \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 f\OML/cmm/m/it
 /12 s[]\OMS/cmsy/m/n/12 g$  \T2A/cmr/m/n/12 // \T2A/cmr/m/sl/12 Множество еще н
 едетерминизированных гиперсостояний 
  []
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 111.
+LaTeX Warning: Command \O invalid in math mode on input line 119.
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 111.
+LaTeX Warning: Command \O invalid in math mode on input line 119.
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 114.
+LaTeX Warning: Command \O invalid in math mode on input line 122.
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 114.
+LaTeX Warning: Command \O invalid in math mode on input line 122.
 
 
-Overfull \hbox (40.56511pt too wide) in paragraph at lines 120--121
+Overfull \hbox (40.56511pt too wide) in paragraph at lines 128--129
 \T2A/cmr/m/sl/12 не было детерминированно, то добавляем его в множество ожидающ
 их
  []
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 122.
+LaTeX Warning: Command \O invalid in math mode on input line 130.
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 122.
+LaTeX Warning: Command \O invalid in math mode on input line 130.
 
 
-Overfull \hbox (29.33739pt too wide) in paragraph at lines 123--124
+Overfull \hbox (29.33739pt too wide) in paragraph at lines 131--132
 [] []$\OML/cmm/m/it/12 F[] \OT1/cmr/m/n/12 := \OML/cmm/m/it/12 F[]  \OMS/cmsy/m
 /n/12 [  f\OML/cmm/m/it/12 state\OMS/cmsy/m/n/12 g$\T2A/cmr/m/n/12 ;  // \T2A/c
 mr/m/sl/12 Если хотя бы одно состояние гиперсостояния
  []
 
 
-Overfull \hbox (27.55478pt too wide) in paragraph at lines 133--134
+Overfull \hbox (27.55478pt too wide) in paragraph at lines 141--142
 \T2A/cmr/m/n/12 Количество гиперсостояний органиченно сверху числом $\OT1/cmr/m
 /n/12 2[]$\T2A/cmr/m/n/12 , так как различных
  []
 
 
-Overfull \hbox (32.177pt too wide) in paragraph at lines 133--134
+Overfull \hbox (32.177pt too wide) in paragraph at lines 141--142
 \T2A/cmr/m/n/12 гиперсостояний ровно столько, сколько различных подмножеств $\O
 ML/cmm/m/it/12 n$\T2A/cmr/m/n/12 -элементного
  []
 
 
-Overfull \hbox (35.73099pt too wide) in paragraph at lines 133--134
+Overfull \hbox (35.73099pt too wide) in paragraph at lines 141--142
 \T2A/cmr/m/n/12 множетсва состояний $\OML/cmm/m/it/12 Q$\T2A/cmr/m/n/12 . То ес
 ть в худшем случае предстоит детерминизировать
  []
 
 
-Overfull \hbox (27.53693pt too wide) in paragraph at lines 135--136
+Overfull \hbox (27.53693pt too wide) in paragraph at lines 143--144
 \OML/cmm/m/it/12 O\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 mn[]\OT1/cmr/m/n/12 )$ \T2A
 /cmr/m/n/12 (это явно сложнее чем еще одно пересечение (15 строка) и объединени
 е
  []
 
 [5]
-Overfull \hbox (66.8627pt too wide) in paragraph at lines 138--138
+Overfull \hbox (66.8627pt too wide) in paragraph at lines 147--147
 []\T2A/cmr/bx/n/17.28 Реализация алгоритма детерминизации автомата 
  []
 
-[6] [7
+
+Overfull \hbox (16.1898pt too wide) in paragraph at lines 150--151
+\T2A/cmr/m/n/12 которых - конечные множества, 1 - подмножество одного из ранее 
+указанных
+ []
+
+
+Overfull \hbox (16.12454pt too wide) in paragraph at lines 150--151
+\T2A/cmr/m/n/12 множеств, 1 - элемент множества и какая-то функция, множеством 
+значений
+ []
+
+
+Overfull \hbox (5.79805pt too wide) in paragraph at lines 150--151
+\T2A/cmr/m/n/12 которой есть булеан конечного множества. Ясно, что придется код
+ировать
+ []
+
+
+Overfull \hbox (18.94833pt too wide) in paragraph at lines 150--151
+\T2A/cmr/m/n/12 автоматы. Маразм, одним словом, но математика этого делать не з
+апрещает.
+ []
+
+
+Overfull \hbox (15.93553pt too wide) in paragraph at lines 154--155
+[]\T2A/cmr/m/n/12 должна быть возможность работать с подмножествами этих множес
+тв. 
+ []
+
+[6] [7] [8
 
 ] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 2208 strings out of 493030
- 27233 string characters out of 6136259
+ 2212 strings out of 493030
+ 27275 string characters out of 6136259
  188168 words of memory out of 5000000
- 5737 multiletter control sequences out of 15000+600000
- 17481 words of font info for 43 fonts, out of 8000000 for 9000
+ 5739 multiletter control sequences out of 15000+600000
+ 19087 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 27i,8n,20p,735b,463s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 27i,8n,20p,872b,463s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on report.dvi (8 pages, 21660 bytes).
+Output written on report.dvi (9 pages, 25328 bytes).
