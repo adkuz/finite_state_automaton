@@ -1,4 +1,4 @@
-\documentclass[12pt]{report}
+\documentclass[12pt]{article}
 \usepackage{ucs}
 \usepackage[cp1251]{inputenc}
 \usepackage[T2A]{fontenc}
@@ -7,7 +7,14 @@
 \usepackage[noend]{algorithmic}                            
 \usepackage{lipsum}% Мало ли пригодится рыба
 \usepackage{titletoc}% http://ctan.org/pkg/titletoc
-
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{listings}
+\usepackage{xcolor}
+\lstset { %
+    language=C++,
+    %backgroundcolor=\color{black!5}, % set backgroundcolor
+    basicstyle=\footnotesize,% basic font setting
+}
 
 \renewcommand*\contentsname{Оглавление}
 \titlecontents*{chapter}% <section-type>
@@ -153,15 +160,51 @@
 			\item должна быть возможность итерироваться (пробегаться) по этому множеству;
 			\item должна быть возможность работать с подмножествами этих множеств.
 		\end{itemize}
-		Значит, множества можно закодировать одним числом - его мощностью $n$. При этом, если нужно выделить отдельный элемент, то это тоже будет число $i$ - индекс элемента такой, что $ i \in Z_{n}$.
+		Значит, множества можно закодировать одним числом - его мощностью $n$. При этом, если нужно выделить отдельный элемент, то это тоже будет число $i$ - индекс элемента такой, что $ i \in Z_{n}$. Подмножества конечного множества мощностью $n$ будет закодирован характеристическим вектором длинной $n$.
+		
+		Характеристический вектор реализован в виде класса ax::bitvector, который занимает на один бит иформации ровно один бит памяти (то есть вектор занимает $\lceil n/8 \rceil$ байт памяти).
+		
+		Функцию переходов будем называть таблицей переходов, так как теперь мы работаем не с буквами и состояниями, а с соответствующими индексами. Таблица реализована в виде класса ax::matrix.
 		\subsection{Реализация алгоритма удаления $\lambda$-переходов}
 		\subsection{Реализация алгоритма детерминизации КНА}
 		\subsection{Уязвимые для критики места}
 	\section{Тестирование}
+		Все тесты находятся в дирректории tests и выполняются с помощью фреймворка catch.
+		Запуск всех тестов сразу : $make \ \ test\_all$.
 		\subsection{Unit-тестирование}
+		Тестирование можно запустить отдельно для каждого класса:
+		\begin{itemize}
+			\item Тестирование собственных вспомогательных библиотек:
+				\begin{itemize}
+					\item ax::bitvector - $make\ \ \_bitvector\_test$;
+					\item ax::matrix - $make\ \ \_matrix\_test$;
+				\end{itemize}
+				Для запуска всех тестов библиотеки сразу -  $make \_ax\_libs\_test$
+			
+			\item Тестирование автоматов:
+				\begin{itemize}
+					\item machines::base\_finite\_state\_machine - $make\ \ \_base\_fsm\_test$;
+					\item machines::finite\_state\_machine - $make\ \ \_finite\_state\_machine\_test$;
+					\item machines::deterministic\_finite\_state\_machine - $make\ \ \_deterministic$;
+				\end{itemize}
+				Для запуска всех тестов на автоматы сразу -  $make \_machines\_test$
+			
+			\item Тестирование алгоритмов:
+				\begin{itemize}
+					\item Удаление $\lambda$-переходов - $make\ \ \_lambda\_transition\_deletion$;
+					\item Детерминирование КНА - $make\ \ \_determinization$;
+				\end{itemize}
+				Для запуска всех тестов на алгоритмы сразу -  $make \_algorithms\_test$
+			
+		\end{itemize}
 		\subsection{Умное тестирование}
+		Умное тестирование основывается на следствии теоремы Клини - автомат реализует распознаватель некоторого регулярного выражения. Всего производятся три теста, каждый из которых берет регулярное выражение и соответствующий файл.fsa - файл описания автомата (см. 0.6.1), и затем огромное число раз генерирует последовательность чисел необходимого алфавита и сравнивает ответы регулярного выражения и детерминизированного автомата.
+		
+		Запуск такого теста: $make\ \ smart\_test$.
+		 
 	\section{Использование алгоритма}
 		\subsection{Формат файла-автомата (.fsa)}
+		
 		\subsection{Компиляция и запуск основной программы}
 	\section{Заключение}
 		\sout{Реализовано все круто, добавить нечего, почаще бы так писали код.} 
@@ -175,3 +218,5 @@
 	\end{thebibliography}
 	
 \end{document}
+\grid
+\grid

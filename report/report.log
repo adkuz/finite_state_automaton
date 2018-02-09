@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=latex 2017.12.24)  28 DEC 2017 14:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.12.24)  6 JAN 2018 20:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -6,20 +6,19 @@ entering extended mode
 (./report.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
-(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
-Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
-\c@chapter=\count80
-\c@section=\count81
-\c@subsection=\count82
-\c@subsubsection=\count83
-\c@paragraph=\count84
-\c@subparagraph=\count85
-\c@figure=\count86
-\c@table=\count87
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
@@ -30,7 +29,7 @@ Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-global.def
 File: uni-global.def 2013/05/13 UCS: Unicode global data
 )
-\uc@secondtry=\count88
+\uc@secondtry=\count87
 \uc@combtoks=\toks14
 \uc@combtoksb=\toks15
 \uc@temptokena=\toks16
@@ -75,13 +74,13 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count89
+\inf@bad=\count88
 LaTeX Info: Redefining \frac on input line 199.
-\uproot@=\count90
-\leftroot@=\count91
+\uproot@=\count89
+\leftroot@=\count90
 LaTeX Info: Redefining \overline on input line 297.
-\classnum@=\count92
-\DOTSCASE@=\count93
+\classnum@=\count91
+\DOTSCASE@=\count92
 LaTeX Info: Redefining \ldots on input line 394.
 LaTeX Info: Redefining \dots on input line 397.
 LaTeX Info: Redefining \cdots on input line 518.
@@ -90,15 +89,15 @@ LaTeX Info: Redefining \cdots on input line 518.
 \big@size=\dimen105
 LaTeX Font Info:    Redeclaring font encoding OML on input line 630.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
-\macc@depth=\count94
-\c@MaxMatrixCols=\count95
+\macc@depth=\count93
+\c@MaxMatrixCols=\count94
 \dotsspace@=\muskip10
-\c@parentequation=\count96
-\dspbrk@lvl=\count97
+\c@parentequation=\count95
+\dspbrk@lvl=\count96
 \tag@help=\toks20
-\row@=\count98
-\column@=\count99
-\maxfields@=\count100
+\row@=\count97
+\column@=\count98
+\maxfields@=\count99
 \andhelp@=\toks21
 \eqnshift@=\dimen106
 \alignsep@=\dimen107
@@ -119,7 +118,7 @@ LaTeX Info: Redefining \] on input line 2736.
 \UL@skip=\skip46
 \UL@hook=\toks24
 \UL@height=\dimen112
-\UL@pe=\count101
+\UL@pe=\count100
 \UL@pixel=\dimen113
 \ULC@box=\box30
 Package: ulem 2012/05/18
@@ -135,260 +134,426 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks25
 )
-\c@ALC@unique=\count102
-\c@ALC@line=\count103
-\c@ALC@rem=\count104
-\c@ALC@depth=\count105
+\c@ALC@unique=\count101
+\c@ALC@line=\count102
+\c@ALC@rem=\count103
+\c@ALC@depth=\count104
 \ALC@tlm=\skip47
 \algorithmicindent=\skip48
 )
 (/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.sty
 Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
-\c@lips@count=\count106
+\c@lips@count=\count105
 )
 (/usr/share/texlive/texmf-dist/tex/latex/titlesec/titletoc.sty
 Package: titletoc 2011/12/15 v1.6 TOC entries
 \ttl@leftsep=\dimen115
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/01/03 v1.1b Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 143.
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count106
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 2015/12/30 v3.0k Driver-dependent file (DPC,SPQR)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count107
+\lst@gtempboxa=\box31
+\lst@token=\toks26
+\lst@length=\count108
+\lst@currlwidth=\dimen116
+\lst@column=\count109
+\lst@pos=\count110
+\lst@lostspace=\dimen117
+\lst@width=\dimen118
+\lst@newlines=\count111
+\lst@lineno=\count112
+\lst@maxwidth=\dimen119
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count113
+\lst@skipnumbers=\count114
+\lst@framebox=\box32
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+LaTeX Info: Redefining \color on input line 702.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
 
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
-) [1
-
-] (./report.toc)
+)
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count115
+\scratchdimen=\dimen120
+\scratchbox=\box33
+\nofMPsegments=\count116
+\nofMParguments=\count117
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count118
+\MPscratchDim=\dimen121
+\MPnumerator=\count119
+\makeMPintoPDFobject=\count120
+\everyMPtoPDFconversion=\toks28
+)
+\c@lstlisting=\count121
+ (./report.toc)
 \tf@toc=\write3
 \openout3 = `report.toc'.
 
 
-Overfull \hbox (15.53302pt too wide) in paragraph at lines 32--33
+Overfull \hbox (15.53302pt too wide) in paragraph at lines 39--40
 \T2A/cmr/m/n/12 Ниже приводятся определения и утверждения, которые будут исполь
 зованы
  []
 
 [1
 
-]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 40.
- (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 47.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 40.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 47.
 
-Overfull \hbox (0.9201pt too wide) in paragraph at lines 46--47
+Overfull \hbox (0.9201pt too wide) in paragraph at lines 53--54
 \T2A/cmr/m/n/12 алфавит дополняется фиктивным символом $\OML/cmm/m/it/12 ^^U$ \
 T2A/cmr/m/n/12 (в иностранной литературе
  []
 
 [2]
-Overfull \hbox (21.79976pt too wide) in paragraph at lines 66--67
+Overfull \hbox (21.79976pt too wide) in paragraph at lines 73--74
 \T2A/cmr/m/n/12 Алгоритм детерминизации осуществляется в два шага - удаление $\
 OML/cmm/m/it/12 ^^U$\T2A/cmr/m/n/12 -переходов
  []
 
 
-Overfull \hbox (0.80545pt too wide) in paragraph at lines 68--70
+Overfull \hbox (0.80545pt too wide) in paragraph at lines 75--77
 \T2A/cmr/m/n/12 распознаваемых ими языков). Доказательство этого утверждения вх
 одит
  []
 
 
-Overfull \hbox (7.05309pt too wide) in paragraph at lines 68--70
+Overfull \hbox (7.05309pt too wide) in paragraph at lines 75--77
 \T2A/cmr/m/n/12 в обоснование алгоритма детерминизации, который описан в учебни
 кех [[]].
  []
 
-
-Overfull \hbox (0.5796pt too wide) in paragraph at lines 78--79
+[3]
+Overfull \hbox (0.5796pt too wide) in paragraph at lines 85--86
 []\T2A/cmr/m/n/12 Алгоритм интуитивно следует понимать так: если моделировать К
 НА
  []
 
 
-Overfull \hbox (3.23538pt too wide) in paragraph at lines 78--79
+Overfull \hbox (3.23538pt too wide) in paragraph at lines 85--86
 \T2A/cmr/m/n/12 на компьютере, то прежде всего придется реализовать автомат так
 , чтобы
  []
 
 
-Overfull \hbox (10.0414pt too wide) in paragraph at lines 78--79
+Overfull \hbox (10.0414pt too wide) in paragraph at lines 85--86
 \T2A/cmr/m/n/12 Точно так же и тут - пусть в КДА состояния будут в биективном о
 тношении
  []
 
 
-Overfull \hbox (0.41641pt too wide) in paragraph at lines 78--79
+Overfull \hbox (0.41641pt too wide) in paragraph at lines 85--86
 \T2A/cmr/m/n/12 с совокупностью подмножеств состояний входного КДА. Такие состо
 яния
  []
 
 
-Overfull \hbox (2.37299pt too wide) in paragraph at lines 78--79
+Overfull \hbox (2.37299pt too wide) in paragraph at lines 85--86
 \T2A/cmr/m/n/12 результирующего КДА будем называть гиперсостоянием (исключитель
 но
  []
 
 
-Overfull \hbox (3.9594pt too wide) in paragraph at lines 78--79
+Overfull \hbox (3.9594pt too wide) in paragraph at lines 85--86
 \T2A/cmr/m/n/12 если это состояние входит в то подмножество $\OML/cmm/m/it/12 Q
 $\T2A/cmr/m/n/12 , в котором гиперсостояние
  []
 
-[3]
-Overfull \hbox (15.85791pt too wide) in paragraph at lines 82--83
+
+Overfull \hbox (15.85791pt too wide) in paragraph at lines 89--90
 \OT1/cmr/m/n/12 2[]$ \T2A/cmr/m/n/12 инъективным отношением, поэтому в новом КД
 А необходимо определить
  []
 
 [4]
-Overfull \hbox (20.80646pt too wide) in paragraph at lines 114--115
+Overfull \hbox (20.80646pt too wide) in paragraph at lines 121--122
 [] []$\OML/cmm/m/it/12 s[] \OT1/cmr/m/n/12 := \OMS/cmsy/m/n/12 f\OML/cmm/m/it/1
 2 q[]\OMS/cmsy/m/n/12 g$  \T2A/cmr/m/n/12 // \T2A/cmr/m/sl/12 Входное гиперсост
 ояние соответсвует входному состоянию
  []
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 115.
+LaTeX Warning: Command \O invalid in math mode on input line 122.
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 115.
+LaTeX Warning: Command \O invalid in math mode on input line 122.
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 116.
+LaTeX Warning: Command \O invalid in math mode on input line 123.
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 116.
+LaTeX Warning: Command \O invalid in math mode on input line 123.
 
 
-Overfull \hbox (4.81625pt too wide) in paragraph at lines 116--117
+Overfull \hbox (4.81625pt too wide) in paragraph at lines 123--124
 [] []$\OML/cmm/m/it/12 DET \OT1/cmr/m/n/12 = ^^_$  \T2A/cmr/m/n/12 // \T2A/cmr/
 m/sl/12 Множество уже детерминизированных гиперсостояний 
  []
 
 
-Overfull \hbox (59.36139pt too wide) in paragraph at lines 117--118
+Overfull \hbox (59.36139pt too wide) in paragraph at lines 124--125
 [] []$\OML/cmm/m/it/12 NONDET \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 f\OML/cmm/m/it
 /12 s[]\OMS/cmsy/m/n/12 g$  \T2A/cmr/m/n/12 // \T2A/cmr/m/sl/12 Множество еще н
 едетерминизированных гиперсостояний 
  []
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 119.
+LaTeX Warning: Command \O invalid in math mode on input line 126.
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 119.
+LaTeX Warning: Command \O invalid in math mode on input line 126.
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 122.
+LaTeX Warning: Command \O invalid in math mode on input line 129.
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 122.
+LaTeX Warning: Command \O invalid in math mode on input line 129.
 
 
-Overfull \hbox (40.56511pt too wide) in paragraph at lines 128--129
+Overfull \hbox (40.56511pt too wide) in paragraph at lines 135--136
 \T2A/cmr/m/sl/12 не было детерминированно, то добавляем его в множество ожидающ
 их
  []
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 130.
+LaTeX Warning: Command \O invalid in math mode on input line 137.
 
 
-LaTeX Warning: Command \O invalid in math mode on input line 130.
+LaTeX Warning: Command \O invalid in math mode on input line 137.
 
 
-Overfull \hbox (29.33739pt too wide) in paragraph at lines 131--132
+Overfull \hbox (29.33739pt too wide) in paragraph at lines 138--139
 [] []$\OML/cmm/m/it/12 F[] \OT1/cmr/m/n/12 := \OML/cmm/m/it/12 F[]  \OMS/cmsy/m
 /n/12 [  f\OML/cmm/m/it/12 state\OMS/cmsy/m/n/12 g$\T2A/cmr/m/n/12 ;  // \T2A/c
 mr/m/sl/12 Если хотя бы одно состояние гиперсостояния
  []
 
 
-Overfull \hbox (27.55478pt too wide) in paragraph at lines 141--142
+Overfull \hbox (27.55478pt too wide) in paragraph at lines 148--149
 \T2A/cmr/m/n/12 Количество гиперсостояний органиченно сверху числом $\OT1/cmr/m
 /n/12 2[]$\T2A/cmr/m/n/12 , так как различных
  []
 
 
-Overfull \hbox (32.177pt too wide) in paragraph at lines 141--142
+Overfull \hbox (32.177pt too wide) in paragraph at lines 148--149
 \T2A/cmr/m/n/12 гиперсостояний ровно столько, сколько различных подмножеств $\O
 ML/cmm/m/it/12 n$\T2A/cmr/m/n/12 -элементного
  []
 
 
-Overfull \hbox (35.73099pt too wide) in paragraph at lines 141--142
+Overfull \hbox (35.73099pt too wide) in paragraph at lines 148--149
 \T2A/cmr/m/n/12 множетсва состояний $\OML/cmm/m/it/12 Q$\T2A/cmr/m/n/12 . То ес
 ть в худшем случае предстоит детерминизировать
  []
 
 
-Overfull \hbox (27.53693pt too wide) in paragraph at lines 143--144
+Overfull \hbox (27.53693pt too wide) in paragraph at lines 150--151
 \OML/cmm/m/it/12 O\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 mn[]\OT1/cmr/m/n/12 )$ \T2A
 /cmr/m/n/12 (это явно сложнее чем еще одно пересечение (15 строка) и объединени
 е
  []
 
 [5]
-Overfull \hbox (66.8627pt too wide) in paragraph at lines 147--147
+Overfull \hbox (52.3622pt too wide) in paragraph at lines 154--154
 []\T2A/cmr/bx/n/17.28 Реализация алгоритма детерминизации автомата 
  []
 
 
-Overfull \hbox (16.1898pt too wide) in paragraph at lines 150--151
+Overfull \hbox (16.1898pt too wide) in paragraph at lines 157--158
 \T2A/cmr/m/n/12 которых - конечные множества, 1 - подмножество одного из ранее 
 указанных
  []
 
 
-Overfull \hbox (16.12454pt too wide) in paragraph at lines 150--151
+Overfull \hbox (16.12454pt too wide) in paragraph at lines 157--158
 \T2A/cmr/m/n/12 множеств, 1 - элемент множества и какая-то функция, множеством 
 значений
  []
 
 
-Overfull \hbox (5.79805pt too wide) in paragraph at lines 150--151
+Overfull \hbox (5.79805pt too wide) in paragraph at lines 157--158
 \T2A/cmr/m/n/12 которой есть булеан конечного множества. Ясно, что придется код
 ировать
  []
 
 
-Overfull \hbox (18.94833pt too wide) in paragraph at lines 150--151
+Overfull \hbox (18.94833pt too wide) in paragraph at lines 157--158
 \T2A/cmr/m/n/12 автоматы. Маразм, одним словом, но математика этого делать не з
 апрещает.
  []
 
 
-Overfull \hbox (15.93553pt too wide) in paragraph at lines 154--155
+Overfull \hbox (15.93553pt too wide) in paragraph at lines 161--162
 []\T2A/cmr/m/n/12 должна быть возможность работать с подмножествами этих множес
 тв. 
  []
 
-[6] [7] [8
 
-] (./report.aux) ) 
+Overfull \hbox (6.95335pt too wide) in paragraph at lines 163--164
+\T2A/cmr/m/n/12 множества мощностью $\OML/cmm/m/it/12 n$ \T2A/cmr/m/n/12 будет 
+закодирован характеристическим вектором
+ []
+
+[6]
+Overfull \hbox (10.32039pt too wide) in paragraph at lines 167--168
+[]\T2A/cmr/m/n/12 Функцию переходов будем называть таблицей переходов, так как 
+теперь
+ []
+
+
+Overfull \hbox (13.57928pt too wide) in paragraph at lines 167--168
+\T2A/cmr/m/n/12 мы работаем не с буквами и состояниями, а с соответствующими ин
+дексами.
+ []
+
+
+Overfull \hbox (34.01482pt too wide) in paragraph at lines 187--188
+[]\T2A/cmr/m/n/12 machines::finite_state_machine - $\OML/cmm/m/it/12 make  []fi
+nite[]state[]machine[]test$\T2A/cmr/m/n/12 ; 
+ []
+
+
+Overfull \hbox (31.75905pt too wide) in paragraph at lines 188--189
+[]\T2A/cmr/m/n/12 machines::deterministic_finite_state_machine - $\OML/cmm/m/it
+/12 make  []deterministic$\T2A/cmr/m/n/12 ; 
+ []
+
+
+Overfull \hbox (7.84435pt too wide) in paragraph at lines 197--198
+\T2A/cmr/m/n/12 Для запуска всех тестов на алгоритмы сразу - $\OML/cmm/m/it/12 
+make[]algorithms[]test$ 
+ []
+
+[7]
+Overfull \hbox (1.3997pt too wide) in paragraph at lines 201--202
+\T2A/cmr/m/n/12 Умное тестирование основывается на следствии теоремы Клини - ав
+томат
+ []
+
+
+Overfull \hbox (1.34274pt too wide) in paragraph at lines 201--202
+\T2A/cmr/m/n/12 производятся три теста, каждый из которых берет регулярное выра
+жение
+ []
+
+
+Overfull \hbox (23.10753pt too wide) in paragraph at lines 201--202
+\T2A/cmr/m/n/12 затем огромное число раз генерирует последовательность чисел не
+обходимого
+ []
+
+
+Overfull \hbox (38.11777pt too wide) in paragraph at lines 201--202
+\T2A/cmr/m/n/12 алфавита и сравнивает ответы регулярного выражения и детерминиз
+ированного
+ []
+
+[8] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 2212 strings out of 493030
- 27275 string characters out of 6136259
- 188168 words of memory out of 5000000
- 5739 multiletter control sequences out of 15000+600000
- 19087 words of font info for 45 fonts, out of 8000000 for 9000
+ 4992 strings out of 493029
+ 65882 string characters out of 6136233
+ 263063 words of memory out of 5000000
+ 8469 multiletter control sequences out of 15000+600000
+ 17461 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 27i,8n,20p,872b,463s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 33i,8n,58p,872b,466s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t2a.enc
+}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/public/cm-super/
+sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/s
+hare/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/typ
+e1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/s
+frm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/sh
+are/texmf/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/texmf/fonts/type
+1/public/cm-super/sfsl1200.pfb>
+Output written on report.pdf (8 pages, 210288 bytes).
+PDF statistics:
+ 92 PDF objects out of 1000 (max. 8388607)
+ 66 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
-Output written on report.dvi (9 pages, 25328 bytes).
