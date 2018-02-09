@@ -28,6 +28,8 @@ test_all: _ax_libs_test _machines_test _algorithms_test
 
 smart_test: _full_tests
 
+#-------------------------------------------------------------------------------
+
 _ax_libs_test: _bitvector_test _matrix_test
 
 _algorithms_test: _lambda_transition_deletion _determinization
