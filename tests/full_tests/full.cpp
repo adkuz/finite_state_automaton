@@ -20,7 +20,7 @@ static const std::map<std::string, std::string>
 TEST_CASE( "Testing like a god" )
 {
     std::srand( 42 );
-    auto seq_number = 100'000; //cool!!!
+    auto seq_number = 100'000;
     auto max_seq_length = 20;
 
     using sequence_t = std::vector<size_t>;
